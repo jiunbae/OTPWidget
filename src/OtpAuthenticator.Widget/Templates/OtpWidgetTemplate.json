@@ -1,0 +1,131 @@
+{
+    "type": "AdaptiveCard",
+    "version": "1.5",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "Container",
+                                    "style": "accent",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "${initial}",
+                                            "size": "large",
+                                            "weight": "bolder",
+                                            "horizontalAlignment": "center",
+                                            "color": "light"
+                                        }
+                                    ],
+                                    "bleed": true,
+                                    "minHeight": "44px",
+                                    "verticalContentAlignment": "center"
+                                }
+                            ],
+                            "verticalContentAlignment": "center"
+                        },
+                        {
+                            "type": "Column",
+                            "width": "stretch",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${issuer}",
+                                    "weight": "bolder",
+                                    "size": "medium",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${accountName}",
+                                    "size": "small",
+                                    "isSubtle": true,
+                                    "wrap": true,
+                                    "maxLines": 1
+                                }
+                            ],
+                            "verticalContentAlignment": "center",
+                            "spacing": "medium"
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${otpCode}",
+                            "size": "extraLarge",
+                            "weight": "bolder",
+                            "fontType": "monospace",
+                            "horizontalAlignment": "center"
+                        }
+                    ],
+                    "spacing": "medium"
+                },
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "stretch",
+                            "items": [
+                                {
+                                    "type": "ProgressBar",
+                                    "value": "${timeProgress}"
+                                }
+                            ],
+                            "verticalContentAlignment": "center"
+                        },
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${remainingSeconds}s",
+                                    "size": "small",
+                                    "isSubtle": true
+                                }
+                            ],
+                            "verticalContentAlignment": "center",
+                            "spacing": "small"
+                        }
+                    ],
+                    "spacing": "small"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Execute",
+            "title": "Copy",
+            "verb": "copy",
+            "data": "${rawCode}",
+            "iconUrl": "https://cdn-icons-png.flaticon.com/512/1621/1621635.png"
+        },
+        {
+            "type": "Action.Execute",
+            "title": "Refresh",
+            "verb": "refresh",
+            "iconUrl": "https://cdn-icons-png.flaticon.com/512/61/61444.png"
+        }
+    ],
+    "refresh": {
+        "action": {
+            "type": "Action.Execute",
+            "verb": "refresh"
+        },
+        "expires": "2099-12-31T23:59:59Z"
+    }
+}
