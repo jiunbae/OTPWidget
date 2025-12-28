@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- App Title -->
+  <data name="AppTitle" xml:space="preserve">
+    <value>OTP 인증</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Windows를 위한 안전한 2단계 인증</value>
+  </data>
+
+  <!-- Navigation -->
+  <data name="Nav_Accounts" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="Nav_Settings" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Nav_Backup" xml:space="preserve">
+    <value>백업</value>
+  </data>
+
+  <!-- Account List -->
+  <data name="AccountList_Title" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="AccountList_Empty" xml:space="preserve">
+    <value>등록된 계정이 없습니다</value>
+  </data>
+  <data name="AccountList_EmptyDescription" xml:space="preserve">
+    <value>QR 코드를 스캔하거나 수동으로 입력하여 첫 번째 계정을 추가하세요</value>
+  </data>
+  <data name="AccountList_Add" xml:space="preserve">
+    <value>계정 추가</value>
+  </data>
+  <data name="AccountList_ScanQR" xml:space="preserve">
+    <value>QR 코드 스캔</value>
+  </data>
+  <data name="AccountList_CopiedToClipboard" xml:space="preserve">
+    <value>코드가 클립보드에 복사되었습니다</value>
+  </data>
+
+  <!-- Account Edit -->
+  <data name="AccountEdit_AddTitle" xml:space="preserve">
+    <value>계정 추가</value>
+  </data>
+  <data name="AccountEdit_EditTitle" xml:space="preserve">
+    <value>계정 편집</value>
+  </data>
+  <data name="AccountEdit_Issuer" xml:space="preserve">
+    <value>서비스 이름</value>
+  </data>
+  <data name="AccountEdit_IssuerPlaceholder" xml:space="preserve">
+    <value>예: Google, GitHub, Microsoft</value>
+  </data>
+  <data name="AccountEdit_AccountName" xml:space="preserve">
+    <value>계정 이름</value>
+  </data>
+  <data name="AccountEdit_AccountNamePlaceholder" xml:space="preserve">
+    <value>예: user@example.com</value>
+  </data>
+  <data name="AccountEdit_SecretKey" xml:space="preserve">
+    <value>비밀 키</value>
+  </data>
+  <data name="AccountEdit_SecretKeyPlaceholder" xml:space="preserve">
+    <value>Base32 인코딩된 비밀 키</value>
+  </data>
+  <data name="AccountEdit_Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="AccountEdit_TypeTOTP" xml:space="preserve">
+    <value>시간 기반 (TOTP)</value>
+  </data>
+  <data name="AccountEdit_TypeHOTP" xml:space="preserve">
+    <value>카운터 기반 (HOTP)</value>
+  </data>
+  <data name="AccountEdit_Algorithm" xml:space="preserve">
+    <value>알고리즘</value>
+  </data>
+  <data name="AccountEdit_Digits" xml:space="preserve">
+    <value>자릿수</value>
+  </data>
+  <data name="AccountEdit_Period" xml:space="preserve">
+    <value>갱신 주기 (초)</value>
+  </data>
+  <data name="AccountEdit_Counter" xml:space="preserve">
+    <value>카운터</value>
+  </data>
+  <data name="AccountEdit_Favorite" xml:space="preserve">
+    <value>즐겨찾기</value>
+  </data>
+  <data name="AccountEdit_Notes" xml:space="preserve">
+    <value>메모</value>
+  </data>
+  <data name="AccountEdit_Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="AccountEdit_Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="AccountEdit_Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+
+  <!-- QR Scanner -->
+  <data name="QrScanner_Title" xml:space="preserve">
+    <value>QR 코드 스캔</value>
+  </data>
+  <data name="QrScanner_Instructions" xml:space="preserve">
+    <value>QR 코드가 포함된 화면 영역을 선택하세요</value>
+  </data>
+  <data name="QrScanner_Capture" xml:space="preserve">
+    <value>화면 캡처</value>
+  </data>
+  <data name="QrScanner_NotFound" xml:space="preserve">
+    <value>선택한 영역에서 QR 코드를 찾을 수 없습니다</value>
+  </data>
+  <data name="QrScanner_InvalidCode" xml:space="preserve">
+    <value>유효하지 않은 OTP QR 코드입니다</value>
+  </data>
+  <data name="QrScanner_Success" xml:space="preserve">
+    <value>계정이 성공적으로 추가되었습니다</value>
+  </data>
+
+  <!-- Settings -->
+  <data name="Settings_Title" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Settings_General" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="Settings_StartMinimized" xml:space="preserve">
+    <value>트레이에 최소화된 상태로 시작</value>
+  </data>
+  <data name="Settings_StartWithWindows" xml:space="preserve">
+    <value>Windows 시작 시 자동 실행</value>
+  </data>
+  <data name="Settings_AutoCopy" xml:space="preserve">
+    <value>클릭 시 코드 자동 복사</value>
+  </data>
+  <data name="Settings_ClearClipboard" xml:space="preserve">
+    <value>클립보드 자동 삭제</value>
+  </data>
+  <data name="Settings_Seconds" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>테마</value>
+  </data>
+  <data name="Settings_ThemeSystem" xml:space="preserve">
+    <value>시스템 설정 따르기</value>
+  </data>
+  <data name="Settings_ThemeLight" xml:space="preserve">
+    <value>라이트</value>
+  </data>
+  <data name="Settings_ThemeDark" xml:space="preserve">
+    <value>다크</value>
+  </data>
+  <data name="Settings_CloudSync" xml:space="preserve">
+    <value>클라우드 동기화</value>
+  </data>
+  <data name="Settings_CloudSyncEnabled" xml:space="preserve">
+    <value>클라우드 동기화 사용</value>
+  </data>
+  <data name="Settings_CloudSyncProvider" xml:space="preserve">
+    <value>클라우드 제공자</value>
+  </data>
+  <data name="Settings_OneDrive" xml:space="preserve">
+    <value>OneDrive</value>
+  </data>
+  <data name="Settings_GoogleDrive" xml:space="preserve">
+    <value>Google 드라이브</value>
+  </data>
+  <data name="Settings_SyncNow" xml:space="preserve">
+    <value>지금 동기화</value>
+  </data>
+  <data name="Settings_LastSync" xml:space="preserve">
+    <value>마지막 동기화</value>
+  </data>
+  <data name="Settings_Never" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="Settings_Security" xml:space="preserve">
+    <value>보안</value>
+  </data>
+  <data name="Settings_About" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="Settings_Version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+
+  <!-- Backup -->
+  <data name="Backup_Title" xml:space="preserve">
+    <value>백업 및 복원</value>
+  </data>
+  <data name="Backup_Export" xml:space="preserve">
+    <value>백업 내보내기</value>
+  </data>
+  <data name="Backup_ExportDescription" xml:space="preserve">
+    <value>모든 계정을 암호화된 백업 파일로 내보내기</value>
+  </data>
+  <data name="Backup_Import" xml:space="preserve">
+    <value>백업 가져오기</value>
+  </data>
+  <data name="Backup_ImportDescription" xml:space="preserve">
+    <value>백업 파일에서 계정 복원</value>
+  </data>
+  <data name="Backup_Password" xml:space="preserve">
+    <value>암호화 비밀번호</value>
+  </data>
+  <data name="Backup_PasswordHint" xml:space="preserve">
+    <value>백업을 보호할 강력한 비밀번호를 선택하세요</value>
+  </data>
+  <data name="Backup_ExportSuccess" xml:space="preserve">
+    <value>백업이 성공적으로 내보내졌습니다</value>
+  </data>
+  <data name="Backup_ImportSuccess" xml:space="preserve">
+    <value>백업이 성공적으로 가져와졌습니다</value>
+  </data>
+  <data name="Backup_InvalidPassword" xml:space="preserve">
+    <value>잘못된 비밀번호이거나 손상된 백업 파일입니다</value>
+  </data>
+
+  <!-- Tray Popup -->
+  <data name="Tray_OpenApp" xml:space="preserve">
+    <value>OTP 인증 열기</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>종료</value>
+  </data>
+
+  <!-- Common -->
+  <data name="Common_OK" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Common_Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="Common_Edit" xml:space="preserve">
+    <value>편집</value>
+  </data>
+  <data name="Common_Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Common_Refresh" xml:space="preserve">
+    <value>새로고침</value>
+  </data>
+  <data name="Common_Error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="Common_Success" xml:space="preserve">
+    <value>성공</value>
+  </data>
+  <data name="Common_Warning" xml:space="preserve">
+    <value>경고</value>
+  </data>
+
+  <!-- Delete Confirmation -->
+  <data name="Delete_Title" xml:space="preserve">
+    <value>계정 삭제</value>
+  </data>
+  <data name="Delete_Message" xml:space="preserve">
+    <value>이 계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</value>
+  </data>
+
+  <!-- Widget -->
+  <data name="Widget_Name" xml:space="preserve">
+    <value>OTP 코드</value>
+  </data>
+  <data name="Widget_Description" xml:space="preserve">
+    <value>위젯에서 OTP 코드 표시</value>
+  </data>
+</root>
