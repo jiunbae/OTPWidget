@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OtpAuthenticator.Core</RootNamespace>
+    <AssemblyName>OtpAuthenticator.Core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- OTP Generation -->
+    <PackageReference Include="Otp.NET" Version="1.4.0" />
+
+    <!-- QR Code -->
+    <PackageReference Include="ZXing.Net.Windows.Compatibility" Version="0.16.14" />
+
+    <!-- Cloud Sync -->
+    <PackageReference Include="Microsoft.Graph" Version="5.56.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3457" />
+
+    <!-- JSON -->
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+
+    <!-- DI -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>
