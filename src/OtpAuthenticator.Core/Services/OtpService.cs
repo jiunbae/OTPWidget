@@ -5,6 +5,9 @@ using OtpAuthenticator.Core.Models;
 using OtpAuthenticator.Core.Services.Interfaces;
 using OtpNet;
 
+// OtpNet.OtpType과의 충돌 해결
+using OtpType = OtpAuthenticator.Core.Models.OtpType;
+
 namespace OtpAuthenticator.Core.Services;
 
 /// <summary>

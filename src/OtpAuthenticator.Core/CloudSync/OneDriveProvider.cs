@@ -137,9 +137,9 @@ public class OneDriveProvider : ICloudProvider
         {
             using var stream = new MemoryStream(data);
 
-            // AppFolder에 업로드 (특수 폴더 - 앱 전용)
-            var driveItem = await _graphClient!.Me.Drive.Special.AppRoot
-                .ItemWithPath($"{AppFolderName}/{fileName}")
+            // AppFolder에 업로드 (Graph SDK v5 - Root 기반 경로 사용)
+            var driveItem = await _graphClient!.Me.Drive.Root
+                .ItemWithPath($"Apps/{AppFolderName}/{fileName}")
                 .Content
                 .PutAsync(stream);
 
@@ -171,7 +171,8 @@ public class OneDriveProvider : ICloudProvider
 
         try
         {
-            var stream = await _graphClient!.Me.Drive.Items[fileId]
+            // Graph SDK v5 - DriveItem으로 직접 접근
+            var stream = await _graphClient!.Drives["me"].Items[fileId]
                 .Content
                 .GetAsync();
 
@@ -199,8 +200,9 @@ public class OneDriveProvider : ICloudProvider
 
         try
         {
-            var driveItem = await _graphClient!.Me.Drive.Special.AppRoot
-                .ItemWithPath($"{AppFolderName}/{fileName}")
+            // Graph SDK v5 - Root 기반 경로 사용
+            var driveItem = await _graphClient!.Me.Drive.Root
+                .ItemWithPath($"Apps/{AppFolderName}/{fileName}")
                 .GetAsync();
 
             if (driveItem == null) return null;
@@ -231,7 +233,8 @@ public class OneDriveProvider : ICloudProvider
 
         try
         {
-            await _graphClient!.Me.Drive.Items[fileId].DeleteAsync();
+            // Graph SDK v5 - DriveItem으로 직접 접근
+            await _graphClient!.Drives["me"].Items[fileId].DeleteAsync();
             return true;
         }
         catch
