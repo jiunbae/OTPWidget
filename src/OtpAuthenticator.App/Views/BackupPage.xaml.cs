@@ -39,7 +39,7 @@ public sealed partial class BackupPage : Page
         savePicker.SuggestedFileName = $"otp_backup_{DateTime.Now:yyyyMMdd}";
 
         // WinUI 3에서 picker 초기화
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Current.MainWindow);
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(((App)App.Current).MainWindow);
         WinRT.Interop.InitializeWithWindow.Initialize(savePicker, hwnd);
 
         var file = await savePicker.PickSaveFileAsync();
@@ -63,7 +63,7 @@ public sealed partial class BackupPage : Page
         openPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
         openPicker.FileTypeFilter.Add(".otpbackup");
 
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Current.MainWindow);
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(((App)App.Current).MainWindow);
         WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hwnd);
 
         var file = await openPicker.PickSingleFileAsync();

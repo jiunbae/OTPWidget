@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using OtpAuthenticator.App.ViewModels;
 using OtpAuthenticator.App.Views;
 using OtpAuthenticator.Core.Extensions;
+using OtpAuthenticator.Core.Windows.Extensions;
 using OtpAuthenticator.Core.Services.Interfaces;
 using H.NotifyIcon;
 
@@ -17,6 +18,11 @@ public partial class App : Application
     private TaskbarIcon? _trayIcon;
 
     public static IServiceProvider Services { get; private set; } = null!;
+
+    /// <summary>
+    /// 메인 윈도우 접근용 속성
+    /// </summary>
+    public new Window? MainWindow => _mainWindow;
 
     public App()
     {
@@ -55,7 +61,9 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         // Core 서비스 등록
-        services.AddOtpAuthenticatorCore();
+        services.AddCoreServices();
+        services.AddWindowsPlatformServices();
+        services.AddAccountRepository();
 
         // ViewModels 등록
         services.AddTransient<MainViewModel>();
