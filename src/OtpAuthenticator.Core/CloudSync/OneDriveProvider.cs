@@ -137,8 +137,8 @@ public class OneDriveProvider : ICloudProvider
         {
             using var stream = new MemoryStream(data);
 
-            // AppFolder에 업로드 (Graph SDK v5 - Root 기반 경로 사용)
-            var driveItem = await _graphClient!.Me.Drive.Root
+            // AppFolder에 업로드 (Graph SDK v5)
+            var driveItem = await _graphClient!.Drives["me"].Items["root"]
                 .ItemWithPath($"Apps/{AppFolderName}/{fileName}")
                 .Content
                 .PutAsync(stream);
@@ -200,8 +200,8 @@ public class OneDriveProvider : ICloudProvider
 
         try
         {
-            // Graph SDK v5 - Root 기반 경로 사용
-            var driveItem = await _graphClient!.Me.Drive.Root
+            // Graph SDK v5
+            var driveItem = await _graphClient!.Drives["me"].Items["root"]
                 .ItemWithPath($"Apps/{AppFolderName}/{fileName}")
                 .GetAsync();
 
