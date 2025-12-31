@@ -28,6 +28,9 @@
     <!-- Win2D for screen capture -->
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
 
+    <!-- DPAPI for secure storage -->
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+
     <!-- DI -->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
   </ItemGroup>

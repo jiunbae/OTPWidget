@@ -12,14 +12,14 @@ namespace OtpAuthenticator.Core.Windows.Services;
 public class QrCodeService : IQrCodeService
 {
     private readonly IOtpService _otpService;
-    private readonly BarcodeReader<System.Drawing.Bitmap> _barcodeReader;
+    private readonly BarcodeReaderGeneric _barcodeReader;
     private readonly BarcodeWriter<System.Drawing.Bitmap> _barcodeWriter;
 
     public QrCodeService(IOtpService otpService)
     {
         _otpService = otpService;
 
-        _barcodeReader = new BarcodeReader<System.Drawing.Bitmap>
+        _barcodeReader = new BarcodeReaderGeneric
         {
             AutoRotate = true,
             Options = new DecodingOptions
@@ -51,7 +51,9 @@ public class QrCodeService : IQrCodeService
             using var bitmap = CreateBitmapFromBgra(imageData, width, height);
             if (bitmap == null) return null;
 
-            var result = _barcodeReader.Decode(bitmap);
+            // BitmapLuminanceSource를 사용하여 디코딩
+            var luminanceSource = new BitmapLuminanceSource(bitmap);
+            var result = _barcodeReader.Decode(luminanceSource);
             return result?.Text;
         }
         catch
