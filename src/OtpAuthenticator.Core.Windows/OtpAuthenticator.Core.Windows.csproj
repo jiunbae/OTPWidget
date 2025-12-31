@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250108002" />
 
     <!-- QR Code (Windows specific) -->
-    <PackageReference Include="ZXing.Net.Windows.Compatibility" Version="0.16.14" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.14" />
 
     <!-- Win2D for screen capture -->
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
