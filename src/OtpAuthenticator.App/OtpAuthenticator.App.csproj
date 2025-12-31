@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OtpAuthenticator.Core\OtpAuthenticator.Core.csproj" />
+    <ProjectReference Include="..\OtpAuthenticator.Core.Windows\OtpAuthenticator.Core.Windows.csproj" />
   </ItemGroup>
 
   <ItemGroup>
