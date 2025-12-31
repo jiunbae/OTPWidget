@@ -1,7 +1,8 @@
 using Microsoft.Graph;
 using Microsoft.Graph.Models;
 using Microsoft.Identity.Client;
-using System.Net.Http.Headers;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Authentication;
 
 namespace OtpAuthenticator.Core.CloudSync;
 
@@ -93,14 +94,9 @@ public class OneDriveProvider : ICloudProvider
 
             _accessToken = result.AccessToken;
 
-            // GraphServiceClient 초기화
+            // GraphServiceClient 초기화 (Graph SDK v5)
             _graphClient = new GraphServiceClient(
-                new DelegateAuthenticationProvider(request =>
-                {
-                    request.Headers.Authorization =
-                        new AuthenticationHeaderValue("Bearer", _accessToken);
-                    return Task.CompletedTask;
-                }));
+                new TokenAuthenticationProvider(_accessToken));
 
             return true;
         }
@@ -255,22 +251,23 @@ public class OneDriveProvider : ICloudProvider
 }
 
 /// <summary>
-/// DelegateAuthenticationProvider (Graph SDK 호환용)
+/// Token 기반 인증 프로바이더 (Graph SDK v5 Kiota 호환용)
 /// </summary>
-internal class DelegateAuthenticationProvider : IAuthenticationProvider
+internal class TokenAuthenticationProvider : IAuthenticationProvider
 {
-    private readonly Func<HttpRequestMessage, Task> _authenticationDelegate;
+    private readonly string _accessToken;
 
-    public DelegateAuthenticationProvider(Func<HttpRequestMessage, Task> authenticationDelegate)
+    public TokenAuthenticationProvider(string accessToken)
     {
-        _authenticationDelegate = authenticationDelegate;
+        _accessToken = accessToken;
     }
 
     public Task AuthenticateRequestAsync(
-        HttpRequestMessage request,
+        RequestInformation request,
         Dictionary<string, object>? additionalAuthenticationContext = null,
         CancellationToken cancellationToken = default)
     {
-        return _authenticationDelegate(request);
+        request.Headers.Add("Authorization", $"Bearer {_accessToken}");
+        return Task.CompletedTask;
     }
 }
