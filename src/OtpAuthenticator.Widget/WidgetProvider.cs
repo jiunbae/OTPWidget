@@ -102,23 +102,9 @@ public class WidgetProvider : IWidgetProvider
 
         if (_activeWidgets.TryGetValue(widgetId, out var info))
         {
-            info.Size = MapWidgetSize(contextChangedArgs.WidgetContext.Size);
+            // 기본 크기 사용 (SDK에서 WidgetSize 열거형 미지원)
             UpdateWidget(contextChangedArgs.WidgetContext);
         }
-    }
-
-    /// <summary>
-    /// SDK WidgetSize를 내부 WidgetSizeType으로 변환
-    /// </summary>
-    private static WidgetSizeType MapWidgetSize(Microsoft.Windows.Widgets.Providers.WidgetSize size)
-    {
-        return size switch
-        {
-            Microsoft.Windows.Widgets.Providers.WidgetSize.Small => WidgetSizeType.Small,
-            Microsoft.Windows.Widgets.Providers.WidgetSize.Medium => WidgetSizeType.Medium,
-            Microsoft.Windows.Widgets.Providers.WidgetSize.Large => WidgetSizeType.Large,
-            _ => WidgetSizeType.Medium
-        };
     }
 
     /// <summary>

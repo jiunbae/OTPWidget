@@ -15,6 +15,9 @@
     <!-- Disable MRT Core PRI generation for CLI build compatibility -->
     <GeneratePriConfigXmlFile>false</GeneratePriConfigXmlFile>
     <GeneratePriFile>false</GeneratePriFile>
+    <AppxPackage>false</AppxPackage>
+    <WindowsAppContainer>false</WindowsAppContainer>
+    <EnableMsixTooling>false</EnableMsixTooling>
   </PropertyGroup>
 
   <ItemGroup>
