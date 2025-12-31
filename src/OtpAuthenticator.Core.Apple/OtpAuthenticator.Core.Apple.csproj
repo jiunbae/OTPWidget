@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-maccatalyst;net8.0-ios</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OtpAuthenticator.Core.Apple</RootNamespace>
+    <AssemblyName>OtpAuthenticator.Core.Apple</AssemblyName>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- iOS/macOS specific -->
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OtpAuthenticator.Core\OtpAuthenticator.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- QR Code (Cross-platform) -->
+    <PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
+
+    <!-- DI -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
+</Project>

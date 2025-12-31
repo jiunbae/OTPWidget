@@ -2,90 +2,105 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
+
+# Core Libraries
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.Core", "src\OtpAuthenticator.Core\OtpAuthenticator.Core.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.Core.Windows", "src\OtpAuthenticator.Core.Windows\OtpAuthenticator.Core.Windows.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.Core.Apple", "src\OtpAuthenticator.Core.Apple\OtpAuthenticator.Core.Apple.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}"
+EndProject
+
+# Windows Apps
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.App", "src\OtpAuthenticator.App\OtpAuthenticator.App.csproj", "{B2C3D4E5-F6A7-8901-BCDE-F12345678901}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.Widget", "src\OtpAuthenticator.Widget\OtpAuthenticator.Widget.csproj", "{C3D4E5F6-A7B8-9012-CDEF-123456789012}"
 EndProject
+
+# Apple Apps (MAUI)
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.macOS", "src\OtpAuthenticator.macOS\OtpAuthenticator.macOS.csproj", "{D4E5F6A7-B8C9-0123-DEF0-234567890124}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.iOS", "src\OtpAuthenticator.iOS\OtpAuthenticator.iOS.csproj", "{D4E5F6A7-B8C9-0123-DEF0-234567890125}"
+EndProject
+
+# Tests
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpAuthenticator.Core.Tests", "tests\OtpAuthenticator.Core.Tests\OtpAuthenticator.Core.Tests.csproj", "{D4E5F6A7-B8C9-0123-DEF0-234567890123}"
 EndProject
+
+# Solution Folders
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E5F6A7B8-C9D0-1234-EF01-345678901234}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F6A7B8C9-D0E1-2345-F012-456789012345}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apple", "apple", "{G7B8C9D0-E1F2-3456-0123-567890123456}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
 		Debug|ARM64 = Debug|ARM64
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 		Release|ARM64 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x64.ActiveCfg = Debug|x64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x64.Build.0 = Debug|x64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x86.ActiveCfg = Debug|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|x86.Build.0 = Debug|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|ARM64.Build.0 = Debug|ARM64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x64.ActiveCfg = Release|x64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x64.Build.0 = Release|x64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x86.ActiveCfg = Release|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|x86.Build.0 = Release|x86
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|ARM64.ActiveCfg = Release|ARM64
-		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|ARM64.Build.0 = Release|ARM64
+		# Core
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}.Release|Any CPU.Build.0 = Release|Any CPU
+		# Core.Windows
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}.Debug|x64.ActiveCfg = Debug|x64
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}.Debug|x64.Build.0 = Debug|x64
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}.Release|x64.ActiveCfg = Release|x64
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}.Release|x64.Build.0 = Release|x64
+		# Core.Apple
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}.Release|Any CPU.Build.0 = Release|Any CPU
+		# Windows App
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x64.ActiveCfg = Debug|x64
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x64.Build.0 = Debug|x64
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x64.Deploy.0 = Debug|x64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x86.ActiveCfg = Debug|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x86.Build.0 = Debug|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|x86.Deploy.0 = Debug|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|ARM64.Build.0 = Debug|ARM64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Debug|ARM64.Deploy.0 = Debug|ARM64
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x64.ActiveCfg = Release|x64
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x64.Build.0 = Release|x64
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x64.Deploy.0 = Release|x64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x86.ActiveCfg = Release|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x86.Build.0 = Release|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|x86.Deploy.0 = Release|x86
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|ARM64.ActiveCfg = Release|ARM64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|ARM64.Build.0 = Release|ARM64
-		{B2C3D4E5-F6A7-8901-BCDE-F12345678901}.Release|ARM64.Deploy.0 = Release|ARM64
+		# Windows Widget
 		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|x64.ActiveCfg = Debug|x64
 		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|x64.Build.0 = Debug|x64
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|x86.ActiveCfg = Debug|x86
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|x86.Build.0 = Debug|x86
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Debug|ARM64.Build.0 = Debug|ARM64
 		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|x64.ActiveCfg = Release|x64
 		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|x64.Build.0 = Release|x64
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|x86.ActiveCfg = Release|x86
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|x86.Build.0 = Release|x86
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|ARM64.ActiveCfg = Release|ARM64
-		{C3D4E5F6-A7B8-9012-CDEF-123456789012}.Release|ARM64.Build.0 = Release|ARM64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|x64.ActiveCfg = Debug|x64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|x64.Build.0 = Debug|x64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|x86.ActiveCfg = Debug|x86
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|x86.Build.0 = Debug|x86
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|ARM64.Build.0 = Debug|ARM64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|x64.ActiveCfg = Release|x64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|x64.Build.0 = Release|x64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|x86.ActiveCfg = Release|x86
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|x86.Build.0 = Release|x86
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|ARM64.ActiveCfg = Release|ARM64
-		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|ARM64.Build.0 = Release|ARM64
+		# macOS App
+		{D4E5F6A7-B8C9-0123-DEF0-234567890124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890124}.Release|Any CPU.Build.0 = Release|Any CPU
+		# iOS App
+		{D4E5F6A7-B8C9-0123-DEF0-234567890125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890125}.Release|Any CPU.Build.0 = Release|Any CPU
+		# Tests
+		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-234567890123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567890} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567891} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567892} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
 		{B2C3D4E5-F6A7-8901-BCDE-F12345678901} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
 		{C3D4E5F6-A7B8-9012-CDEF-123456789012} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
+		{D4E5F6A7-B8C9-0123-DEF0-234567890124} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
+		{D4E5F6A7-B8C9-0123-DEF0-234567890125} = {E5F6A7B8-C9D0-1234-EF01-345678901234}
 		{D4E5F6A7-B8C9-0123-DEF0-234567890123} = {F6A7B8C9-D0E1-2345-F012-456789012345}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
