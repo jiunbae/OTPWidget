@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using Microsoft.Windows.Widgets.Providers;
+using WinRT;
 
 namespace OtpAuthenticator.Widget;
 

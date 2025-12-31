@@ -17,11 +17,16 @@
     <!-- Disable MRT Core PRI generation for CLI build compatibility -->
     <GeneratePriConfigXmlFile>false</GeneratePriConfigXmlFile>
     <GeneratePriFile>false</GeneratePriFile>
+    <AppxPackage>false</AppxPackage>
+    <WindowsAppContainer>false</WindowsAppContainer>
+    <EnableMsixTooling>false</EnableMsixTooling>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250108002" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

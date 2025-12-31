@@ -1,31 +1,18 @@
 using System.Runtime.InteropServices;
 using OtpAuthenticator.Core.Services.Interfaces;
-using Windows.Graphics.Capture;
-using Windows.Graphics.DirectX;
-using Microsoft.Graphics.Canvas;
 
 namespace OtpAuthenticator.Core.Windows.Services;
 
 /// <summary>
-/// Windows 화면 캡처 서비스 (Windows.Graphics.Capture API)
+/// Windows 화면 캡처 서비스 (System.Drawing 기반)
 /// </summary>
 public class ScreenCaptureService : IScreenCaptureService
 {
-    public async Task<CaptureResult?> CaptureWithPickerAsync()
+    public Task<CaptureResult?> CaptureWithPickerAsync()
     {
-        var picker = new GraphicsCapturePicker();
-
-        var hwnd = GetForegroundWindow();
-        if (hwnd != IntPtr.Zero)
-        {
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
-        }
-
-        var item = await picker.PickSingleItemAsync();
-        if (item == null)
-            return null;
-
-        return await CaptureItemAsync(item);
+        // 전체 화면 캡처로 대체 (Win2D 없이는 Picker 사용 불가)
+        return CaptureAllScreensAsync().ContinueWith(t =>
+            t.Result.FirstOrDefault());
     }
 
     public async Task<IReadOnlyList<CaptureResult>> CaptureAllScreensAsync()
@@ -82,78 +69,6 @@ public class ScreenCaptureService : IScreenCaptureService
                 return null;
             }
         });
-    }
-
-    private async Task<CaptureResult?> CaptureItemAsync(GraphicsCaptureItem item)
-    {
-        try
-        {
-            var device = CanvasDevice.GetSharedDevice();
-
-            using var framePool = Direct3D11CaptureFramePool.Create(
-                device,
-                DirectXPixelFormat.B8G8R8A8UIntNormalized,
-                1,
-                item.Size);
-
-            using var session = framePool.CreateCaptureSession(item);
-
-            var tcs = new TaskCompletionSource<CaptureResult?>();
-
-            framePool.FrameArrived += (s, a) =>
-            {
-                using var frame = s.TryGetNextFrame();
-                if (frame != null)
-                {
-                    var result = ProcessFrame(frame, device);
-                    tcs.TrySetResult(result);
-                }
-                else
-                {
-                    tcs.TrySetResult(null);
-                }
-            };
-
-            session.StartCapture();
-
-            var timeoutTask = Task.Delay(3000);
-            var completedTask = await Task.WhenAny(tcs.Task, timeoutTask);
-
-            session.Dispose();
-
-            if (completedTask == timeoutTask)
-                return null;
-
-            return await tcs.Task;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    private CaptureResult? ProcessFrame(Direct3D11CaptureFrame frame, CanvasDevice device)
-    {
-        try
-        {
-            using var canvasBitmap = CanvasBitmap.CreateFromDirect3D11Surface(device, frame.Surface);
-
-            var width = (int)canvasBitmap.SizeInPixels.Width;
-            var height = (int)canvasBitmap.SizeInPixels.Height;
-
-            var pixelData = canvasBitmap.GetPixelBytes();
-
-            return new CaptureResult
-            {
-                PixelData = pixelData,
-                Width = width,
-                Height = height
-            };
-        }
-        catch
-        {
-            return null;
-        }
     }
 
     private List<MonitorInfo> GetAllMonitors()
