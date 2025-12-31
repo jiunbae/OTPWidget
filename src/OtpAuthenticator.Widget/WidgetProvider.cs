@@ -102,9 +102,23 @@ public class WidgetProvider : IWidgetProvider
 
         if (_activeWidgets.TryGetValue(widgetId, out var info))
         {
-            info.Size = contextChangedArgs.WidgetContext.Size;
+            info.Size = MapWidgetSize(contextChangedArgs.WidgetContext.Size);
             UpdateWidget(contextChangedArgs.WidgetContext);
         }
+    }
+
+    /// <summary>
+    /// SDK WidgetSize를 내부 WidgetSizeType으로 변환
+    /// </summary>
+    private static WidgetSizeType MapWidgetSize(Microsoft.Windows.Widgets.Providers.WidgetSize size)
+    {
+        return size switch
+        {
+            Microsoft.Windows.Widgets.Providers.WidgetSize.Small => WidgetSizeType.Small,
+            Microsoft.Windows.Widgets.Providers.WidgetSize.Medium => WidgetSizeType.Medium,
+            Microsoft.Windows.Widgets.Providers.WidgetSize.Large => WidgetSizeType.Large,
+            _ => WidgetSizeType.Medium
+        };
     }
 
     /// <summary>
@@ -165,14 +179,14 @@ public class WidgetProvider : IWidgetProvider
     /// <summary>
     /// Adaptive Card 템플릿 반환
     /// </summary>
-    private string GetWidgetTemplate(WidgetSize size)
+    private string GetWidgetTemplate(WidgetSizeType size)
     {
         // 크기에 따라 다른 템플릿 사용
         return size switch
         {
-            WidgetSize.Small => GetSmallTemplate(),
-            WidgetSize.Medium => GetMediumTemplate(),
-            WidgetSize.Large => GetLargeTemplate(),
+            WidgetSizeType.Small => GetSmallTemplate(),
+            WidgetSizeType.Medium => GetMediumTemplate(),
+            WidgetSizeType.Large => GetLargeTemplate(),
             _ => GetMediumTemplate()
         };
     }
@@ -343,6 +357,16 @@ internal class WidgetInfo
     public string WidgetId { get; set; } = string.Empty;
     public string DefinitionId { get; set; } = string.Empty;
     public bool IsActive { get; set; }
-    public WidgetSize Size { get; set; } = WidgetSize.Medium;
+    public WidgetSizeType Size { get; set; } = WidgetSizeType.Medium;
     public int CurrentIndex { get; set; }
+}
+
+/// <summary>
+/// 위젯 크기 열거형 (Windows Widget SDK 호환)
+/// </summary>
+internal enum WidgetSizeType
+{
+    Small,
+    Medium,
+    Large
 }

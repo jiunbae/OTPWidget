@@ -12,6 +12,9 @@
     <UseWinUI>true</UseWinUI>
     <Platforms>x86;x64;ARM64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <!-- Disable MRT Core PRI generation for CLI build compatibility -->
+    <GeneratePriConfigXmlFile>false</GeneratePriConfigXmlFile>
+    <GeneratePriFile>false</GeneratePriFile>
   </PropertyGroup>
 
   <ItemGroup>
