@@ -28,6 +28,21 @@ public partial class AccountListViewModel : BaseViewModel
     private bool _isEmpty = true;
 
     /// <summary>
+    /// 필터: 특정 폴더 ID
+    /// </summary>
+    public Guid? FilterFolderId { get; set; }
+
+    /// <summary>
+    /// 필터: 즐겨찾기만 표시
+    /// </summary>
+    public bool ShowFavoritesOnly { get; set; }
+
+    /// <summary>
+    /// 필터: 미분류만 표시
+    /// </summary>
+    public bool ShowUncategorizedOnly { get; set; }
+
+    /// <summary>
     /// 계정 편집 요청 이벤트
     /// </summary>
     public event EventHandler<OtpAccount>? EditRequested;
@@ -65,8 +80,25 @@ public partial class AccountListViewModel : BaseViewModel
             }
             Accounts.Clear();
 
-            // 계정 로드
-            var accounts = await _accountRepository.GetAllAsync();
+            // 필터에 따라 계정 로드
+            IReadOnlyList<OtpAccount> accounts;
+
+            if (ShowFavoritesOnly)
+            {
+                accounts = await _accountRepository.GetFavoritesAsync();
+            }
+            else if (ShowUncategorizedOnly)
+            {
+                accounts = await _accountRepository.GetUncategorizedAsync();
+            }
+            else if (FilterFolderId.HasValue)
+            {
+                accounts = await _accountRepository.GetByFolderAsync(FilterFolderId.Value);
+            }
+            else
+            {
+                accounts = await _accountRepository.GetAllAsync();
+            }
 
             foreach (var account in accounts)
             {

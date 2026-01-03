@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using OtpAuthenticator.App.ViewModels;
 using OtpAuthenticator.Core.Models;
+using Windows.Storage.Pickers;
 
 namespace OtpAuthenticator.App.Views;
 
@@ -28,6 +29,7 @@ public sealed partial class QrScannerDialog : ContentDialog
         // 이벤트 연결
         ScanScreenButton.Click += OnScanScreenClick;
         ScanAreaButton.Click += OnScanAreaClick;
+        ImportImageButton.Click += OnImportImageClick;
         ParseUriButton.Click += OnParseUriClick;
 
         ViewModel.PropertyChanged += OnViewModelPropertyChanged;
@@ -103,6 +105,27 @@ public sealed partial class QrScannerDialog : ContentDialog
         await ViewModel.ScanWithPickerCommand.ExecuteAsync(null);
 
         await this.ShowAsync();
+    }
+
+    private async void OnImportImageClick(object sender, RoutedEventArgs e)
+    {
+        var picker = new FileOpenPicker();
+        picker.FileTypeFilter.Add(".png");
+        picker.FileTypeFilter.Add(".jpg");
+        picker.FileTypeFilter.Add(".jpeg");
+        picker.FileTypeFilter.Add(".bmp");
+        picker.FileTypeFilter.Add(".gif");
+        picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
+        // WinUI 3에서는 윈도우 핸들이 필요
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+        var file = await picker.PickSingleFileAsync();
+        if (file != null)
+        {
+            ViewModel.ScanFromFileCommand.Execute(file.Path);
+        }
     }
 
     private void OnParseUriClick(object sender, RoutedEventArgs e)

@@ -9,11 +9,14 @@ namespace OtpAuthenticator.Core.Services;
 public class AccountRepository : IAccountRepository
 {
     private const string AccountsFileName = "accounts.dat";
+    private const string FoldersFileName = "folders.dat";
     private const string SecretsPrefix = "secret_";
 
     private readonly ISecureStorageService _secureStorage;
     private List<OtpAccount> _accounts = new();
+    private List<OtpFolder> _folders = new();
     private bool _isLoaded = false;
+    private bool _foldersLoaded = false;
 
     public AccountRepository(ISecureStorageService secureStorage)
     {
@@ -184,6 +187,128 @@ public class AccountRepository : IAccountRepository
     public void Refresh()
     {
         _isLoaded = false;
+        _foldersLoaded = false;
+    }
+
+    /// <summary>
+    /// 폴더별 계정 조회
+    /// </summary>
+    public async Task<IReadOnlyList<OtpAccount>> GetByFolderAsync(Guid? folderId)
+    {
+        await EnsureLoadedAsync();
+        return _accounts
+            .Where(a => a.FolderId == folderId)
+            .OrderBy(a => a.SortOrder)
+            .ToList()
+            .AsReadOnly();
+    }
+
+    /// <summary>
+    /// 미분류 계정 조회
+    /// </summary>
+    public async Task<IReadOnlyList<OtpAccount>> GetUncategorizedAsync()
+    {
+        await EnsureLoadedAsync();
+        return _accounts
+            .Where(a => a.FolderId == null)
+            .OrderBy(a => a.SortOrder)
+            .ToList()
+            .AsReadOnly();
+    }
+
+    // Folder operations
+
+    /// <summary>
+    /// 폴더 데이터 로드 확인 및 초기 로드
+    /// </summary>
+    private async Task EnsureFoldersLoadedAsync()
+    {
+        if (_foldersLoaded)
+            return;
+
+        var foldersData = await _secureStorage.LoadEncryptedDataAsync<List<OtpFolder>>(FoldersFileName);
+        _folders = foldersData ?? new List<OtpFolder>();
+        _foldersLoaded = true;
+    }
+
+    /// <summary>
+    /// 폴더 데이터 저장
+    /// </summary>
+    private async Task SaveFoldersAsync()
+    {
+        await _secureStorage.SaveEncryptedDataAsync(FoldersFileName, _folders);
+    }
+
+    /// <summary>
+    /// 모든 폴더 조회
+    /// </summary>
+    public async Task<IReadOnlyList<OtpFolder>> GetAllFoldersAsync()
+    {
+        await EnsureFoldersLoadedAsync();
+        return _folders.OrderBy(f => f.SortOrder).ToList().AsReadOnly();
+    }
+
+    /// <summary>
+    /// 폴더 추가
+    /// </summary>
+    public async Task<OtpFolder> AddFolderAsync(OtpFolder folder)
+    {
+        await EnsureFoldersLoadedAsync();
+
+        if (folder.Id == Guid.Empty)
+            folder.Id = Guid.NewGuid();
+
+        folder.CreatedAt = DateTime.UtcNow;
+        folder.SortOrder = _folders.Count;
+
+        _folders.Add(folder);
+        await SaveFoldersAsync();
+
+        return folder;
+    }
+
+    /// <summary>
+    /// 폴더 수정
+    /// </summary>
+    public async Task UpdateFolderAsync(OtpFolder folder)
+    {
+        await EnsureFoldersLoadedAsync();
+
+        var index = _folders.FindIndex(f => f.Id == folder.Id);
+        if (index < 0)
+            throw new KeyNotFoundException($"Folder with ID {folder.Id} not found");
+
+        _folders[index] = folder;
+        await SaveFoldersAsync();
+    }
+
+    /// <summary>
+    /// 폴더 삭제 (계정은 미분류로 이동)
+    /// </summary>
+    public async Task DeleteFolderAsync(Guid id)
+    {
+        await EnsureFoldersLoadedAsync();
+        await EnsureLoadedAsync();
+
+        // 해당 폴더의 계정들을 미분류로 이동
+        foreach (var account in _accounts.Where(a => a.FolderId == id))
+        {
+            account.FolderId = null;
+        }
+        await SaveAsync();
+
+        // 폴더 삭제
+        _folders.RemoveAll(f => f.Id == id);
+        await SaveFoldersAsync();
+    }
+
+    /// <summary>
+    /// 폴더 내 계정 수 조회
+    /// </summary>
+    public async Task<int> GetAccountCountInFolderAsync(Guid? folderId)
+    {
+        await EnsureLoadedAsync();
+        return _accounts.Count(a => a.FolderId == folderId);
     }
 }
 
@@ -207,6 +332,7 @@ internal class AccountData
     public DateTime CreatedAt { get; set; }
     public DateTime? LastUsedAt { get; set; }
     public string? Notes { get; set; }
+    public Guid? FolderId { get; set; }
 
     public static AccountData FromAccount(OtpAccount account)
     {
@@ -226,7 +352,8 @@ internal class AccountData
             IsFavorite = account.IsFavorite,
             CreatedAt = account.CreatedAt,
             LastUsedAt = account.LastUsedAt,
-            Notes = account.Notes
+            Notes = account.Notes,
+            FolderId = account.FolderId
         };
     }
 
@@ -248,7 +375,8 @@ internal class AccountData
             IsFavorite = IsFavorite,
             CreatedAt = CreatedAt,
             LastUsedAt = LastUsedAt,
-            Notes = Notes
+            Notes = Notes,
+            FolderId = FolderId
         };
     }
 }

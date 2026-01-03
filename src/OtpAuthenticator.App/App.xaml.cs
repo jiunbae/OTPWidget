@@ -14,15 +14,14 @@ namespace OtpAuthenticator.App;
 /// </summary>
 public partial class App : Application
 {
-    private Window? _mainWindow;
     private TaskbarIcon? _trayIcon;
 
     public static IServiceProvider Services { get; private set; } = null!;
 
     /// <summary>
-    /// 메인 윈도우 접근용 속성
+    /// 메인 윈도우 접근용 정적 속성
     /// </summary>
-    public new Window? MainWindow => _mainWindow;
+    public static Window? MainWindow { get; private set; }
 
     public App()
     {
@@ -39,7 +38,7 @@ public partial class App : Application
         await settingsService.LoadAsync();
 
         // 메인 윈도우 생성
-        _mainWindow = new MainWindow();
+        MainWindow = new MainWindow();
 
         // 시스템 트레이 초기화
         InitializeTrayIcon();
@@ -48,11 +47,11 @@ public partial class App : Application
         if (settingsService.Settings.StartMinimized)
         {
             // 최소화 상태로 시작 (트레이만 표시)
-            _mainWindow.Hide();
+            MainWindow.Hide();
         }
         else
         {
-            _mainWindow.Activate();
+            MainWindow.Activate();
         }
     }
 
@@ -101,22 +100,22 @@ public partial class App : Application
 
     private void ShowMainWindow()
     {
-        if (_mainWindow != null)
+        if (MainWindow != null)
         {
-            _mainWindow.Show();
-            _mainWindow.Activate();
+            MainWindow.Show();
+            MainWindow.Activate();
         }
     }
 
     public void HideToTray()
     {
-        _mainWindow?.Hide();
+        MainWindow?.Hide();
     }
 
     public void Exit()
     {
         _trayIcon?.Dispose();
-        _mainWindow?.Close();
+        MainWindow?.Close();
         Environment.Exit(0);
     }
 }

@@ -70,3 +70,32 @@ public class ProgressToColorConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+/// <summary>
+/// 복사 상태에 따른 배경색 변환 (복사됨: 연한 녹색, 기본: 반투명)
+/// </summary>
+public class CopiedBackgroundConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        bool isCopied = value is bool b && b;
+
+        if (isCopied)
+        {
+            // Light green with opacity
+            return new Microsoft.UI.Xaml.Media.SolidColorBrush(
+                Windows.UI.Color.FromArgb(40, 0, 200, 0)); // #2800C800
+        }
+        else
+        {
+            // Subtle background
+            return new Microsoft.UI.Xaml.Media.SolidColorBrush(
+                Windows.UI.Color.FromArgb(20, 128, 128, 128)); // #14808080
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
+    }
+}

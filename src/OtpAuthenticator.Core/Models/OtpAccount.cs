@@ -86,6 +86,11 @@ public class OtpAccount
     public string? Notes { get; set; }
 
     /// <summary>
+    /// 폴더 ID (null이면 미분류)
+    /// </summary>
+    public Guid? FolderId { get; set; }
+
+    /// <summary>
     /// 표시용 이름 (Issuer: AccountName 형식)
     /// </summary>
     public string DisplayName => string.IsNullOrEmpty(Issuer)
@@ -124,4 +129,40 @@ public enum HashAlgorithmType
     Sha1,
     Sha256,
     Sha512
+}
+
+/// <summary>
+/// OTP 계정 폴더 모델
+/// </summary>
+public class OtpFolder
+{
+    /// <summary>
+    /// 고유 식별자
+    /// </summary>
+    public Guid Id { get; set; } = Guid.NewGuid();
+
+    /// <summary>
+    /// 폴더 이름
+    /// </summary>
+    public string Name { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 아이콘 (Segoe Fluent Icons glyph code)
+    /// </summary>
+    public string Icon { get; set; } = "\uE8B7"; // Folder icon
+
+    /// <summary>
+    /// 테마 색상 (HEX)
+    /// </summary>
+    public string Color { get; set; } = "#0078D4";
+
+    /// <summary>
+    /// 정렬 순서
+    /// </summary>
+    public int SortOrder { get; set; }
+
+    /// <summary>
+    /// 생성 시간
+    /// </summary>
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

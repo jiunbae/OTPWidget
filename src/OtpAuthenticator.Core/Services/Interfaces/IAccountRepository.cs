@@ -46,4 +46,41 @@ public interface IAccountRepository
     /// 즐겨찾기 계정 조회
     /// </summary>
     Task<IReadOnlyList<OtpAccount>> GetFavoritesAsync();
+
+    /// <summary>
+    /// 폴더별 계정 조회
+    /// </summary>
+    Task<IReadOnlyList<OtpAccount>> GetByFolderAsync(Guid? folderId);
+
+    /// <summary>
+    /// 미분류 계정 조회
+    /// </summary>
+    Task<IReadOnlyList<OtpAccount>> GetUncategorizedAsync();
+
+    // Folder operations
+
+    /// <summary>
+    /// 모든 폴더 조회
+    /// </summary>
+    Task<IReadOnlyList<OtpFolder>> GetAllFoldersAsync();
+
+    /// <summary>
+    /// 폴더 추가
+    /// </summary>
+    Task<OtpFolder> AddFolderAsync(OtpFolder folder);
+
+    /// <summary>
+    /// 폴더 수정
+    /// </summary>
+    Task UpdateFolderAsync(OtpFolder folder);
+
+    /// <summary>
+    /// 폴더 삭제 (계정은 미분류로 이동)
+    /// </summary>
+    Task DeleteFolderAsync(Guid id);
+
+    /// <summary>
+    /// 폴더 내 계정 수 조회
+    /// </summary>
+    Task<int> GetAccountCountInFolderAsync(Guid? folderId);
 }

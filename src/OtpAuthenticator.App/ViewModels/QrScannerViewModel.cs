@@ -136,6 +136,32 @@ public partial class QrScannerViewModel : BaseViewModel
     }
 
     /// <summary>
+    /// 파일에서 QR 코드 스캔
+    /// </summary>
+    [RelayCommand]
+    private void ScanFromFile(string filePath)
+    {
+        if (string.IsNullOrWhiteSpace(filePath)) return;
+
+        StatusMessage = "Scanning QR code from image file...";
+        ScannedAccount = null;
+        HasScannedAccount = false;
+
+        var account = _qrCodeService.DecodeOtpAccountFromFile(filePath);
+
+        if (account != null)
+        {
+            ScannedAccount = account;
+            HasScannedAccount = true;
+            StatusMessage = $"Found: {account.DisplayName}";
+        }
+        else
+        {
+            StatusMessage = "No QR code found in the image file";
+        }
+    }
+
+    /// <summary>
     /// 수동 URI 입력으로 추가
     /// </summary>
     [RelayCommand]

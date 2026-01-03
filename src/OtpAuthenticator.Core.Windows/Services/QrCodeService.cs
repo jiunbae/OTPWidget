@@ -95,6 +95,29 @@ public class QrCodeService : IQrCodeService
         }
     }
 
+    public string? DecodeFromFile(string filePath)
+    {
+        try
+        {
+            using var bitmap = new System.Drawing.Bitmap(filePath);
+            var luminanceSource = new BitmapLuminanceSource(bitmap);
+            var result = _barcodeReader.Decode(luminanceSource);
+            return result?.Text;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public OtpAccount? DecodeOtpAccountFromFile(string filePath)
+    {
+        var text = DecodeFromFile(filePath);
+        if (string.IsNullOrEmpty(text)) return null;
+
+        return _otpService.ParseOtpAuthUri(text);
+    }
+
     private static System.Drawing.Bitmap? CreateBitmapFromBgra(byte[] bgraData, int width, int height)
     {
         if (bgraData.Length != width * height * 4)

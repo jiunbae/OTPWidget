@@ -29,6 +29,22 @@ public sealed partial class AccountListPage : Page
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+
+        // Handle navigation parameters
+        if (e.Parameter is AccountListNavigationArgs args)
+        {
+            ViewModel.FilterFolderId = args.FolderId;
+            ViewModel.ShowFavoritesOnly = args.ShowFavoritesOnly;
+            ViewModel.ShowUncategorizedOnly = args.ShowUncategorizedOnly;
+        }
+        else
+        {
+            // Reset filters for "All Accounts"
+            ViewModel.FilterFolderId = null;
+            ViewModel.ShowFavoritesOnly = false;
+            ViewModel.ShowUncategorizedOnly = false;
+        }
+
         await ViewModel.LoadAccountsAsync();
     }
 

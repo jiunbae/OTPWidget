@@ -98,27 +98,40 @@
                                            Style="{StaticResource AccountNameTextStyle}" />
                             </StackPanel>
 
-                            <!-- OTP Code -->
-                            <StackPanel Grid.Column="2"
-                                        VerticalAlignment="Center"
-                                        Margin="16,0">
-                                <TextBlock Text="{x:Bind FormattedCode, Mode=OneWay}"
-                                           Style="{StaticResource OtpCodeTextStyle}" />
-                                <ProgressBar Value="{x:Bind Progress, Mode=OneWay}"
-                                             Maximum="1"
-                                             Height="4"
-                                             Margin="0,4,0,0" />
-                            </StackPanel>
+                            <!-- OTP Code (Click to copy) -->
+                            <Button Grid.Column="2"
+                                    Command="{x:Bind CopyCodeCommand}"
+                                    ToolTipService.ToolTip="Click to copy"
+                                    VerticalAlignment="Center"
+                                    Margin="16,0"
+                                    Padding="12,8"
+                                    CornerRadius="8"
+                                    Background="{x:Bind IsCopied, Mode=OneWay, Converter={StaticResource CopiedBackgroundConverter}}">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                </Button.Style>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="{x:Bind FormattedCode, Mode=OneWay}"
+                                                   Style="{StaticResource OtpCodeTextStyle}" />
+                                        <FontIcon Glyph="&#xE8FB;"
+                                                  FontSize="20"
+                                                  Foreground="Green"
+                                                  Visibility="{x:Bind IsCopied, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                    </StackPanel>
+                                    <ProgressBar Value="{x:Bind Progress, Mode=OneWay}"
+                                                 Maximum="1"
+                                                 Height="4"
+                                                 Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Button>
 
                             <!-- Actions -->
                             <StackPanel Grid.Column="3"
                                         Orientation="Horizontal"
                                         Spacing="4">
-                                <Button Command="{x:Bind CopyCodeCommand}"
-                                        ToolTipService.ToolTip="Copy code">
-                                    <FontIcon Glyph="{x:Bind IsCopied, Mode=OneWay, Converter={StaticResource CopyIconConverter}}"
-                                              FontSize="16" />
-                                </Button>
                                 <Button ToolTipService.ToolTip="More options">
                                     <FontIcon Glyph="&#xE712;" FontSize="16" />
                                     <Button.Flyout>

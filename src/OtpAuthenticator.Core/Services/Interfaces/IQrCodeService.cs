@@ -40,4 +40,18 @@ public interface IQrCodeService
     /// <param name="size">이미지 크기</param>
     /// <returns>PNG 이미지 바이트</returns>
     byte[] GenerateQrCode(string text, int size = 256);
+
+    /// <summary>
+    /// 이미지 파일에서 QR 코드 디코딩
+    /// </summary>
+    /// <param name="filePath">이미지 파일 경로</param>
+    /// <returns>디코딩된 텍스트 또는 null</returns>
+    string? DecodeFromFile(string filePath);
+
+    /// <summary>
+    /// 이미지 파일에서 OTP 계정 파싱
+    /// </summary>
+    /// <param name="filePath">이미지 파일 경로</param>
+    /// <returns>파싱된 OTP 계정 또는 null</returns>
+    OtpAccount? DecodeOtpAccountFromFile(string filePath);
 }

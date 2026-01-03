@@ -43,12 +43,52 @@
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="True"
                         PaneDisplayMode="Left"
-                        OpenPaneLength="200">
+                        OpenPaneLength="240">
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Accounts" Icon="Contact" Tag="accounts" />
-                <NavigationViewItem Content="Backup" Icon="Save" Tag="backup" />
+                <!-- Library Section -->
+                <NavigationViewItemHeader Content="Library" />
+                <NavigationViewItem Content="All Accounts" Tag="accounts">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE77B;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Favorites" Tag="favorites">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE734;" Foreground="Gold" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Uncategorized" Tag="uncategorized">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8B7;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItemSeparator />
+
+                <!-- Folders Section -->
+                <NavigationViewItemHeader Content="Folders" />
+
+                <!-- Folder items will be added dynamically -->
+
+                <NavigationViewItemSeparator />
+
+                <!-- Tools Section -->
+                <NavigationViewItemHeader Content="Tools" />
+                <NavigationViewItem Content="Backup" Tag="backup">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE74E;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem x:Name="AddFolderNavItem" Content="Add Folder" SelectsOnInvoked="False">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8F4;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
 
             <NavigationView.Content>
                 <Frame x:Name="ContentFrame" />
