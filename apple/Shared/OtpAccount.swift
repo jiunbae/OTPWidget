@@ -1,5 +1,31 @@
 import Foundation
 
+/// 폴더 모델
+public struct OtpFolder: Codable, Identifiable, Hashable {
+    public let id: String
+    public var name: String
+    public var icon: String
+    public var color: String
+    public var sortOrder: Int
+    public var createdAt: Date
+
+    public init(
+        id: String = UUID().uuidString,
+        name: String,
+        icon: String = "folder.fill",
+        color: String = "#007AFF",
+        sortOrder: Int = 0,
+        createdAt: Date = Date()
+    ) {
+        self.id = id
+        self.name = name
+        self.icon = icon
+        self.color = color
+        self.sortOrder = sortOrder
+        self.createdAt = createdAt
+    }
+}
+
 /// OTP 계정 모델
 public struct OtpAccount: Codable, Identifiable, Hashable {
     public let id: String
@@ -16,6 +42,7 @@ public struct OtpAccount: Codable, Identifiable, Hashable {
     public var color: String
     public var createdAt: Date
     public var lastUsedAt: Date?
+    public var folderId: String?  // 폴더 ID
 
     public init(
         id: String = UUID().uuidString,
@@ -31,7 +58,8 @@ public struct OtpAccount: Codable, Identifiable, Hashable {
         sortOrder: Int = 0,
         color: String = "#512BD4",
         createdAt: Date = Date(),
-        lastUsedAt: Date? = nil
+        lastUsedAt: Date? = nil,
+        folderId: String? = nil
     ) {
         self.id = id
         self.issuer = issuer
@@ -47,6 +75,7 @@ public struct OtpAccount: Codable, Identifiable, Hashable {
         self.color = color
         self.createdAt = createdAt
         self.lastUsedAt = lastUsedAt
+        self.folderId = folderId
     }
 
     /// 표시 이름

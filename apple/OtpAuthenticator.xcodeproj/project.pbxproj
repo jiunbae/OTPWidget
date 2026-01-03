@@ -1,0 +1,816 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		007218C8356D1049D68567B9 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25EEBF7EB7BA19CED1A1931 /* EditAccountView.swift */; };
+		046CF0B8E0904AC105EFFF63 /* OtpWidgetExtension-iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4CC440DDF24AF3290FAAFFB9 /* OtpWidgetExtension-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		063AC1C15A69B3296C198FE9 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */; };
+		0C322B785BDE564D8D6F113D /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8950373BF50FA5CC4044E1 /* AccountStore.swift */; };
+		0EE39E4B3C7B9D4AB1200039 /* OtpTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91AA460D9869D9C7F03F0 /* OtpTimelineProvider.swift */; };
+		10F91F6AF670DC7200CB18F0 /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDB3D32FE7E7888A64099A /* AddAccountView.swift */; };
+		11059030A6F9D12C7EE2F855 /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E00CB8C3266999D027CE1A /* WidgetSettingsView.swift */; };
+		15497D3EF4072B4D7D987A66 /* OtpAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */; };
+		1672160F86438E1BF93E44A6 /* OtpEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15149C37B470F632CD282837 /* OtpEntry.swift */; };
+		18F78A373114EA3D38AF138B /* OtpWidgetExtension-macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7F2BD00E2F65E4942E59DA0B /* OtpWidgetExtension-macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B4393F00DF7D87264CF5589 /* AccountCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013D6A88BC85CE5957750B7 /* AccountCardView.swift */; };
+		21DEF7EB0E737BC83B2090E7 /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25EEBF7EB7BA19CED1A1931 /* EditAccountView.swift */; };
+		258D9155FBC7C83917F48D8F /* OtpWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB03416A0B36DFF8992C7EE /* OtpWidgetEntryView.swift */; };
+		2CAB3E15BFD3997CF583FF9B /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */; };
+		3841ED310B1D489D75028128 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8950373BF50FA5CC4044E1 /* AccountStore.swift */; };
+		39C054A058F9893FB14A5AB5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F80D2FD55184B5B3D603F06 /* SettingsView.swift */; };
+		3C8DD0A9E21C285745D23741 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8950373BF50FA5CC4044E1 /* AccountStore.swift */; };
+		3DE4766B5A43BF76584419F8 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA692991C9071BAD1486C54A /* MenuBarView.swift */; };
+		4894C369534B0C4A25874AF6 /* OtpAuthenticatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A63C64327454DB1C01E872 /* OtpAuthenticatorApp.swift */; };
+		516D0DDF73CCB194D6FE5C49 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */; };
+		54A05FC0CC94C91E2489433F /* OtpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */; };
+		5961F3CB1E8845C6D3ACC2DB /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8950373BF50FA5CC4044E1 /* AccountStore.swift */; };
+		637AE52307089EA40AED074C /* OtpAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */; };
+		691A36308268763DDBA600EA /* OtpAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */; };
+		72BC57C49FFDB1297250848A /* OtpTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91AA460D9869D9C7F03F0 /* OtpTimelineProvider.swift */; };
+		7DB57A304A143C567CA6F425 /* OtpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */; };
+		7E04E9AC399F66DA782BF350 /* AccountCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013D6A88BC85CE5957750B7 /* AccountCardView.swift */; };
+		7E556E0F563E8708A519916F /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA692991C9071BAD1486C54A /* MenuBarView.swift */; };
+		803B9DDCA0F190B110AD53A0 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */; };
+		818E2A7535EC0B9921EAE337 /* OtpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389AA37B63D94824D9FC41FC /* OtpWidget.swift */; };
+		834A3E5632B17B9E2AB0FCF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1E5A91E6DE3A47071D0087 /* Assets.xcassets */; };
+		86839A5F5E2F91FE4E482BB1 /* QRImageImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C2D5EDF68E21B58BDA49F /* QRImageImportView.swift */; };
+		8AF0D06193EAB6B2EE454991 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D42F445BCC0D8C36D271E6 /* ContentView.swift */; };
+		8D37CEAD98A52F4542E8D02D /* QRImageImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C2D5EDF68E21B58BDA49F /* QRImageImportView.swift */; };
+		9148D997682F6865A96DF579 /* OtpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */; };
+		98C0432A96270D8956459BA1 /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21422600993F26C5A209AA70 /* AccountListView.swift */; };
+		9CCF503A363C34793048C430 /* OtpEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15149C37B470F632CD282837 /* OtpEntry.swift */; };
+		9CFAA9D91EB176C5E3738AB3 /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B374450ED6BC5D552FA2616 /* QRScannerView.swift */; };
+		A080CCC51C8CF6143ABA9FB3 /* OtpWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB03416A0B36DFF8992C7EE /* OtpWidgetEntryView.swift */; };
+		A5D49D53041E2FE08C4DB4CE /* WidgetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC3D6C181EA73FAF5137D2 /* WidgetConfiguration.swift */; };
+		AAE255830421F3776ECE9181 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1E5A91E6DE3A47071D0087 /* Assets.xcassets */; };
+		B140AD5D8D36365822C5E470 /* OtpWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389AA37B63D94824D9FC41FC /* OtpWidget.swift */; };
+		B436764A7A64522E3ED41ED2 /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B374450ED6BC5D552FA2616 /* QRScannerView.swift */; };
+		B5C71FEB9DBD1D298C61EC59 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */; };
+		B7902B526F60D555CC34543C /* OtpAuthenticatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A63C64327454DB1C01E872 /* OtpAuthenticatorApp.swift */; };
+		B7D113A0213BBF14A858A903 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D42F445BCC0D8C36D271E6 /* ContentView.swift */; };
+		BA5417BF80D4C96B3233D3EC /* WidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E00CB8C3266999D027CE1A /* WidgetSettingsView.swift */; };
+		C853FA59B206786356B1481B /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */; };
+		D7F569B175977B4A5258580B /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCDB3D32FE7E7888A64099A /* AddAccountView.swift */; };
+		DAD5F5E148F63F6A331C65FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F80D2FD55184B5B3D603F06 /* SettingsView.swift */; };
+		DBE41BF383016220CD5EE5B9 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */; };
+		DC3834BDC0D008D33072D7B6 /* OtpAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */; };
+		F0038E6389996A8D64951EF3 /* WidgetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC3D6C181EA73FAF5137D2 /* WidgetConfiguration.swift */; };
+		F54F9D181B57B899203CA007 /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21422600993F26C5A209AA70 /* AccountListView.swift */; };
+		FEB967EC66785A9E45109B38 /* OtpGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */; };
+		FFF6F5C7E121A295CBDF3DC7 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		325BF1872C0A5FC81F44D1A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAD197E268A345D8AAE258D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A2A0B8097666BC175A5B6C6;
+			remoteInfo = "OtpWidgetExtension-iOS";
+		};
+		9A8C84734D9B400C51286BE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAD197E268A345D8AAE258D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C7B26D86B514C5D1F408514;
+			remoteInfo = "OtpWidgetExtension-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14AAA62E16CA293181A1C1DD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				18F78A373114EA3D38AF138B /* OtpWidgetExtension-macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E572EC900ACBB863D21DB97 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				046CF0B8E0904AC105EFFF63 /* OtpWidgetExtension-iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01E00CB8C3266999D027CE1A /* WidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSettingsView.swift; sourceTree = "<group>"; };
+		0475872E5FE2BCC7F1B20997 /* OtpAuthenticator-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "OtpAuthenticator-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1463BF3ACFEC4A5D2FE4993D /* OtpAuthenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OtpAuthenticator.entitlements; sourceTree = "<group>"; };
+		15149C37B470F632CD282837 /* OtpEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpEntry.swift; sourceTree = "<group>"; };
+		1B374450ED6BC5D552FA2616 /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
+		1FD9B8F9B0D868463C2CC08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		21422600993F26C5A209AA70 /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
+		2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		389AA37B63D94824D9FC41FC /* OtpWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpWidget.swift; sourceTree = "<group>"; };
+		4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		4CC440DDF24AF3290FAAFFB9 /* OtpWidgetExtension-iOS.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = "OtpWidgetExtension-iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F80D2FD55184B5B3D603F06 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5DCDB3D32FE7E7888A64099A /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
+		5E8950373BF50FA5CC4044E1 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
+		7F2BD00E2F65E4942E59DA0B /* OtpWidgetExtension-macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OtpWidgetExtension-macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		896C2D5EDF68E21B58BDA49F /* QRImageImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRImageImportView.swift; sourceTree = "<group>"; };
+		96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpAccount.swift; sourceTree = "<group>"; };
+		99A4F4376BA659C581D83908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpGenerator.swift; sourceTree = "<group>"; };
+		A25EEBF7EB7BA19CED1A1931 /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
+		AACC3D6C181EA73FAF5137D2 /* WidgetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfiguration.swift; sourceTree = "<group>"; };
+		B0A63C64327454DB1C01E872 /* OtpAuthenticatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpAuthenticatorApp.swift; sourceTree = "<group>"; };
+		B5E092331A63A08E6BF9F554 /* OtpWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OtpWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C9D42F445BCC0D8C36D271E6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CA692991C9071BAD1486C54A /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		DBA91AA460D9869D9C7F03F0 /* OtpTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpTimelineProvider.swift; sourceTree = "<group>"; };
+		E1471FD30A83FE2802813D10 /* OtpAuthenticator-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OtpAuthenticator-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB03416A0B36DFF8992C7EE /* OtpWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpWidgetEntryView.swift; sourceTree = "<group>"; };
+		F013D6A88BC85CE5957750B7 /* AccountCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCardView.swift; sourceTree = "<group>"; };
+		FC1E5A91E6DE3A47071D0087 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0EA2587DB2C8020FC5C9DC65 /* OtpAuthenticator */ = {
+			isa = PBXGroup;
+			children = (
+				94E17D4C7A39DDCB419B1AA3 /* Resources */,
+				7A11C922DCAF32CF0D57841F /* ViewModels */,
+				AE982D32E2C1944FDA1F480F /* Views */,
+				FC1E5A91E6DE3A47071D0087 /* Assets.xcassets */,
+				C9D42F445BCC0D8C36D271E6 /* ContentView.swift */,
+				99A4F4376BA659C581D83908 /* Info.plist */,
+				1463BF3ACFEC4A5D2FE4993D /* OtpAuthenticator.entitlements */,
+				B0A63C64327454DB1C01E872 /* OtpAuthenticatorApp.swift */,
+			);
+			path = OtpAuthenticator;
+			sourceTree = "<group>";
+		};
+		58154A290962FDDD34F741DB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5E8950373BF50FA5CC4044E1 /* AccountStore.swift */,
+				2242564F1A2AFDA05CB2C825 /* KeychainHelper.swift */,
+				96AC461F715E07F0CC79F6B9 /* OtpAccount.swift */,
+				9F87C50AF79A123BCD9B7EDC /* OtpGenerator.swift */,
+				4B9D9F7B48BA3FB9962876DC /* SharedViews.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		7A11C922DCAF32CF0D57841F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8890EF2A8CB43DBD41D9B0BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0475872E5FE2BCC7F1B20997 /* OtpAuthenticator-iOS.app */,
+				E1471FD30A83FE2802813D10 /* OtpAuthenticator-macOS.app */,
+				4CC440DDF24AF3290FAAFFB9 /* OtpWidgetExtension-iOS.appex */,
+				7F2BD00E2F65E4942E59DA0B /* OtpWidgetExtension-macOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94E17D4C7A39DDCB419B1AA3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE982D32E2C1944FDA1F480F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F013D6A88BC85CE5957750B7 /* AccountCardView.swift */,
+				21422600993F26C5A209AA70 /* AccountListView.swift */,
+				5DCDB3D32FE7E7888A64099A /* AddAccountView.swift */,
+				A25EEBF7EB7BA19CED1A1931 /* EditAccountView.swift */,
+				CA692991C9071BAD1486C54A /* MenuBarView.swift */,
+				896C2D5EDF68E21B58BDA49F /* QRImageImportView.swift */,
+				1B374450ED6BC5D552FA2616 /* QRScannerView.swift */,
+				4F80D2FD55184B5B3D603F06 /* SettingsView.swift */,
+				01E00CB8C3266999D027CE1A /* WidgetSettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D44808E2D4E9D3B8F8E018DB = {
+			isa = PBXGroup;
+			children = (
+				0EA2587DB2C8020FC5C9DC65 /* OtpAuthenticator */,
+				FA61EF478F8EBC253F9016A0 /* OtpWidgetExtension */,
+				58154A290962FDDD34F741DB /* Shared */,
+				8890EF2A8CB43DBD41D9B0BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA61EF478F8EBC253F9016A0 /* OtpWidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1FD9B8F9B0D868463C2CC08F /* Info.plist */,
+				15149C37B470F632CD282837 /* OtpEntry.swift */,
+				DBA91AA460D9869D9C7F03F0 /* OtpTimelineProvider.swift */,
+				389AA37B63D94824D9FC41FC /* OtpWidget.swift */,
+				EBB03416A0B36DFF8992C7EE /* OtpWidgetEntryView.swift */,
+				B5E092331A63A08E6BF9F554 /* OtpWidgetExtension.entitlements */,
+				AACC3D6C181EA73FAF5137D2 /* WidgetConfiguration.swift */,
+			);
+			path = OtpWidgetExtension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A2A0B8097666BC175A5B6C6 /* OtpWidgetExtension-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6AE913D5AD89C9119A45B31 /* Build configuration list for PBXNativeTarget "OtpWidgetExtension-iOS" */;
+			buildPhases = (
+				06B666D7446B85C4A970DC23 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OtpWidgetExtension-iOS";
+			packageProductDependencies = (
+			);
+			productName = "OtpWidgetExtension-iOS";
+			productReference = 4CC440DDF24AF3290FAAFFB9 /* OtpWidgetExtension-iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		3B72E15960A6E31E80DBF275 /* OtpAuthenticator-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60122A4A20A5A46BB3CC110F /* Build configuration list for PBXNativeTarget "OtpAuthenticator-iOS" */;
+			buildPhases = (
+				E2572C556FA88A9E4332D6B3 /* Sources */,
+				45228C1C8FFDB30FB12A3F3E /* Resources */,
+				9E572EC900ACBB863D21DB97 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A634496F2CE9E1F7DFA75B2B /* PBXTargetDependency */,
+			);
+			name = "OtpAuthenticator-iOS";
+			packageProductDependencies = (
+			);
+			productName = "OtpAuthenticator-iOS";
+			productReference = 0475872E5FE2BCC7F1B20997 /* OtpAuthenticator-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4DF0AFCCCC0AED55BD259DDF /* OtpAuthenticator-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 667B3D1E10C64B70C3EB9846 /* Build configuration list for PBXNativeTarget "OtpAuthenticator-macOS" */;
+			buildPhases = (
+				1025AD97134E16A3CA347054 /* Sources */,
+				99278D8E26F2E2899C35224F /* Resources */,
+				14AAA62E16CA293181A1C1DD /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A614EF7B7FE76F82F807A4A7 /* PBXTargetDependency */,
+			);
+			name = "OtpAuthenticator-macOS";
+			packageProductDependencies = (
+			);
+			productName = "OtpAuthenticator-macOS";
+			productReference = E1471FD30A83FE2802813D10 /* OtpAuthenticator-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C7B26D86B514C5D1F408514 /* OtpWidgetExtension-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E6E785D080A68358EE77827 /* Build configuration list for PBXNativeTarget "OtpWidgetExtension-macOS" */;
+			buildPhases = (
+				0B0546475219C95E4D0EBCD8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OtpWidgetExtension-macOS";
+			packageProductDependencies = (
+			);
+			productName = "OtpWidgetExtension-macOS";
+			productReference = 7F2BD00E2F65E4942E59DA0B /* OtpWidgetExtension-macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CAD197E268A345D8AAE258D2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					3A2A0B8097666BC175A5B6C6 = {
+						ProvisioningStyle = Automatic;
+					};
+					3B72E15960A6E31E80DBF275 = {
+						ProvisioningStyle = Automatic;
+					};
+					4DF0AFCCCC0AED55BD259DDF = {
+						ProvisioningStyle = Automatic;
+					};
+					9C7B26D86B514C5D1F408514 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 88A8F4991F5CDBC15C7109C4 /* Build configuration list for PBXProject "OtpAuthenticator" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D44808E2D4E9D3B8F8E018DB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B72E15960A6E31E80DBF275 /* OtpAuthenticator-iOS */,
+				4DF0AFCCCC0AED55BD259DDF /* OtpAuthenticator-macOS */,
+				3A2A0B8097666BC175A5B6C6 /* OtpWidgetExtension-iOS */,
+				9C7B26D86B514C5D1F408514 /* OtpWidgetExtension-macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		45228C1C8FFDB30FB12A3F3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE255830421F3776ECE9181 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99278D8E26F2E2899C35224F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834A3E5632B17B9E2AB0FCF0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06B666D7446B85C4A970DC23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5961F3CB1E8845C6D3ACC2DB /* AccountStore.swift in Sources */,
+				DBE41BF383016220CD5EE5B9 /* KeychainHelper.swift in Sources */,
+				691A36308268763DDBA600EA /* OtpAccount.swift in Sources */,
+				9CCF503A363C34793048C430 /* OtpEntry.swift in Sources */,
+				9148D997682F6865A96DF579 /* OtpGenerator.swift in Sources */,
+				72BC57C49FFDB1297250848A /* OtpTimelineProvider.swift in Sources */,
+				B140AD5D8D36365822C5E470 /* OtpWidget.swift in Sources */,
+				A080CCC51C8CF6143ABA9FB3 /* OtpWidgetEntryView.swift in Sources */,
+				063AC1C15A69B3296C198FE9 /* SharedViews.swift in Sources */,
+				F0038E6389996A8D64951EF3 /* WidgetConfiguration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B0546475219C95E4D0EBCD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C8DD0A9E21C285745D23741 /* AccountStore.swift in Sources */,
+				516D0DDF73CCB194D6FE5C49 /* KeychainHelper.swift in Sources */,
+				15497D3EF4072B4D7D987A66 /* OtpAccount.swift in Sources */,
+				1672160F86438E1BF93E44A6 /* OtpEntry.swift in Sources */,
+				54A05FC0CC94C91E2489433F /* OtpGenerator.swift in Sources */,
+				0EE39E4B3C7B9D4AB1200039 /* OtpTimelineProvider.swift in Sources */,
+				818E2A7535EC0B9921EAE337 /* OtpWidget.swift in Sources */,
+				258D9155FBC7C83917F48D8F /* OtpWidgetEntryView.swift in Sources */,
+				803B9DDCA0F190B110AD53A0 /* SharedViews.swift in Sources */,
+				A5D49D53041E2FE08C4DB4CE /* WidgetConfiguration.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1025AD97134E16A3CA347054 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E04E9AC399F66DA782BF350 /* AccountCardView.swift in Sources */,
+				F54F9D181B57B899203CA007 /* AccountListView.swift in Sources */,
+				3841ED310B1D489D75028128 /* AccountStore.swift in Sources */,
+				D7F569B175977B4A5258580B /* AddAccountView.swift in Sources */,
+				8AF0D06193EAB6B2EE454991 /* ContentView.swift in Sources */,
+				21DEF7EB0E737BC83B2090E7 /* EditAccountView.swift in Sources */,
+				2CAB3E15BFD3997CF583FF9B /* KeychainHelper.swift in Sources */,
+				7E556E0F563E8708A519916F /* MenuBarView.swift in Sources */,
+				DC3834BDC0D008D33072D7B6 /* OtpAccount.swift in Sources */,
+				4894C369534B0C4A25874AF6 /* OtpAuthenticatorApp.swift in Sources */,
+				7DB57A304A143C567CA6F425 /* OtpGenerator.swift in Sources */,
+				86839A5F5E2F91FE4E482BB1 /* QRImageImportView.swift in Sources */,
+				B436764A7A64522E3ED41ED2 /* QRScannerView.swift in Sources */,
+				DAD5F5E148F63F6A331C65FB /* SettingsView.swift in Sources */,
+				C853FA59B206786356B1481B /* SharedViews.swift in Sources */,
+				BA5417BF80D4C96B3233D3EC /* WidgetSettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2572C556FA88A9E4332D6B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B4393F00DF7D87264CF5589 /* AccountCardView.swift in Sources */,
+				98C0432A96270D8956459BA1 /* AccountListView.swift in Sources */,
+				0C322B785BDE564D8D6F113D /* AccountStore.swift in Sources */,
+				10F91F6AF670DC7200CB18F0 /* AddAccountView.swift in Sources */,
+				B7D113A0213BBF14A858A903 /* ContentView.swift in Sources */,
+				007218C8356D1049D68567B9 /* EditAccountView.swift in Sources */,
+				B5C71FEB9DBD1D298C61EC59 /* KeychainHelper.swift in Sources */,
+				3DE4766B5A43BF76584419F8 /* MenuBarView.swift in Sources */,
+				637AE52307089EA40AED074C /* OtpAccount.swift in Sources */,
+				B7902B526F60D555CC34543C /* OtpAuthenticatorApp.swift in Sources */,
+				FEB967EC66785A9E45109B38 /* OtpGenerator.swift in Sources */,
+				8D37CEAD98A52F4542E8D02D /* QRImageImportView.swift in Sources */,
+				9CFAA9D91EB176C5E3738AB3 /* QRScannerView.swift in Sources */,
+				39C054A058F9893FB14A5AB5 /* SettingsView.swift in Sources */,
+				FFF6F5C7E121A295CBDF3DC7 /* SharedViews.swift in Sources */,
+				11059030A6F9D12C7EE2F855 /* WidgetSettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A614EF7B7FE76F82F807A4A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C7B26D86B514C5D1F408514 /* OtpWidgetExtension-macOS */;
+			targetProxy = 9A8C84734D9B400C51286BE6 /* PBXContainerItemProxy */;
+		};
+		A634496F2CE9E1F7DFA75B2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A2A0B8097666BC175A5B6C6 /* OtpWidgetExtension-iOS */;
+			targetProxy = 325BF1872C0A5FC81F44D1A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E1EDA94DB934C29D6B643D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OtpAuthenticator/OtpAuthenticator.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				INFOPLIST_FILE = OtpAuthenticator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app;
+				PRODUCT_NAME = "OTP Authenticator";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		131BBADF570218CA912BF4FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OtpAuthenticator/OtpAuthenticator.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				INFOPLIST_FILE = OtpAuthenticator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app;
+				PRODUCT_NAME = "OTP Authenticator";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1F8413B5A6F5913AAAEEF6A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OtpAuthenticator/OtpAuthenticator.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				INFOPLIST_FILE = OtpAuthenticator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app;
+				PRODUCT_NAME = "OTP Authenticator";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		39599912491B69ECF34A3E95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OtpWidgetExtension/OtpWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = OtpWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app.widget;
+				PRODUCT_NAME = OtpWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3A4B77BE51CDD9E3050F630F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OtpWidgetExtension/OtpWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = OtpWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app.widget;
+				PRODUCT_NAME = OtpWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		56310BFBDFDC43FB265A9ACE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OtpWidgetExtension/OtpWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = OtpWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app.widget;
+				PRODUCT_NAME = OtpWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		77299E0B1BC3FF975F0332B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		A045F879C31A7236B52E5ABC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OtpAuthenticator/OtpAuthenticator.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				INFOPLIST_FILE = OtpAuthenticator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app;
+				PRODUCT_NAME = "OTP Authenticator";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C65D9E1BCEF33020074D482E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		E0E6601DDAB911951D0EC79A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OtpWidgetExtension/OtpWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = OtpWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otpauthenticator.app.widget;
+				PRODUCT_NAME = OtpWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E6E785D080A68358EE77827 /* Build configuration list for PBXNativeTarget "OtpWidgetExtension-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39599912491B69ECF34A3E95 /* Debug */,
+				3A4B77BE51CDD9E3050F630F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		60122A4A20A5A46BB3CC110F /* Build configuration list for PBXNativeTarget "OtpAuthenticator-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A045F879C31A7236B52E5ABC /* Debug */,
+				0E1EDA94DB934C29D6B643D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		667B3D1E10C64B70C3EB9846 /* Build configuration list for PBXNativeTarget "OtpAuthenticator-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				131BBADF570218CA912BF4FB /* Debug */,
+				1F8413B5A6F5913AAAEEF6A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		88A8F4991F5CDBC15C7109C4 /* Build configuration list for PBXProject "OtpAuthenticator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C65D9E1BCEF33020074D482E /* Debug */,
+				77299E0B1BC3FF975F0332B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B6AE913D5AD89C9119A45B31 /* Build configuration list for PBXNativeTarget "OtpWidgetExtension-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0E6601DDAB911951D0EC79A /* Debug */,
+				56310BFBDFDC43FB265A9ACE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CAD197E268A345D8AAE258D2 /* Project object */;
+}

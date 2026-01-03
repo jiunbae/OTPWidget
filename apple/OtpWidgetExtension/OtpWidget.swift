@@ -4,7 +4,11 @@ import SwiftUI
 @main
 struct OtpWidgetBundle: WidgetBundle {
     var body: some Widget {
+        // Default widget (shows first/favorite account)
         OtpWidget()
+
+        // Configurable widget (user can select account)
+        ConfigurableOtpWidget()
     }
 }
 
@@ -16,11 +20,16 @@ struct OtpWidget: Widget {
             OtpWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("OTP Code")
-        .description("Display your two-factor authentication code")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .configurationDisplayName("OTP Quick")
+        .description("Display your favorite account's OTP code")
+        .supportedFamilies(supportedFamilies)
+    }
+
+    private var supportedFamilies: [WidgetFamily] {
         #if os(iOS)
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular])
+        return [.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular]
+        #else
+        return [.systemSmall, .systemMedium]
         #endif
     }
 }

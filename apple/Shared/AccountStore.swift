@@ -6,11 +6,80 @@ public class AccountStore {
     public static let shared = AccountStore()
 
     private let accountsKey = "otp_accounts"
+    private let foldersKey = "otp_folders"
     private let userDefaults: UserDefaults?
 
     private init() {
-        // App Group UserDefaults 사용
-        userDefaults = UserDefaults(suiteName: "group.com.otpauthenticator")
+        // App Group UserDefaults 사용 (실패시 standard로 폴백)
+        if let groupDefaults = UserDefaults(suiteName: "group.com.otpauthenticator") {
+            userDefaults = groupDefaults
+        } else {
+            userDefaults = UserDefaults.standard
+        }
+    }
+
+    // MARK: - Folder Operations
+
+    /// 모든 폴더 조회
+    public func getAllFolders() -> [OtpFolder] {
+        guard let data = userDefaults?.data(forKey: foldersKey) else {
+            return []
+        }
+
+        do {
+            let folders = try JSONDecoder().decode([OtpFolder].self, from: data)
+            return folders.sorted { $0.sortOrder < $1.sortOrder }
+        } catch {
+            print("Failed to decode folders: \(error)")
+            return []
+        }
+    }
+
+    /// 폴더 저장
+    public func saveFolders(_ folders: [OtpFolder]) {
+        do {
+            let data = try JSONEncoder().encode(folders)
+            userDefaults?.set(data, forKey: foldersKey)
+        } catch {
+            print("Failed to encode folders: \(error)")
+        }
+    }
+
+    /// 폴더 추가
+    public func addFolder(_ folder: OtpFolder) {
+        var folders = getAllFolders()
+        folders.append(folder)
+        saveFolders(folders)
+    }
+
+    /// 폴더 업데이트
+    public func updateFolder(_ folder: OtpFolder) {
+        var folders = getAllFolders()
+        if let index = folders.firstIndex(where: { $0.id == folder.id }) {
+            folders[index] = folder
+            saveFolders(folders)
+        }
+    }
+
+    /// 폴더 삭제
+    public func deleteFolder(id: String) {
+        var folders = getAllFolders()
+        folders.removeAll { $0.id == id }
+        saveFolders(folders)
+
+        // 해당 폴더의 계정들 폴더 ID 제거
+        var accounts = getAllAccounts()
+        for i in 0..<accounts.count {
+            if accounts[i].folderId == id {
+                accounts[i].folderId = nil
+            }
+        }
+        saveAccounts(accounts)
+    }
+
+    /// 폴더 내 계정 조회
+    public func getAccounts(inFolder folderId: String?) -> [OtpAccount] {
+        return getAllAccounts().filter { $0.folderId == folderId }
     }
 
     // MARK: - Account Operations

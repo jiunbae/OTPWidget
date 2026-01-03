@@ -83,12 +83,19 @@ public class OtpGenerator {
             hmacData = Data(hmac)
         }
 
-        // Dynamic truncation
+        // Dynamic truncation - 바이트 단위로 안전하게 읽기
         let offset = Int(hmacData[hmacData.count - 1] & 0x0f)
-        let truncatedHash = hmacData.withUnsafeBytes { ptr -> UInt32 in
-            let start = ptr.baseAddress!.advanced(by: offset)
-            return start.withMemoryRebound(to: UInt32.self, capacity: 1) { $0.pointee.bigEndian }
+
+        // offset + 3이 범위 내인지 확인
+        guard offset + 3 < hmacData.count else {
+            return nil
         }
+
+        // 4바이트를 개별적으로 읽어서 UInt32 구성 (big-endian)
+        let truncatedHash: UInt32 = (UInt32(hmacData[offset]) << 24) |
+                                     (UInt32(hmacData[offset + 1]) << 16) |
+                                     (UInt32(hmacData[offset + 2]) << 8) |
+                                     UInt32(hmacData[offset + 3])
 
         let code = (truncatedHash & 0x7fffffff) % UInt32(pow(10.0, Double(digits)))
 
