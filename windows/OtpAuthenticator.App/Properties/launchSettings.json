@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OtpAuthenticator.App (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "OtpAuthenticator.App (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

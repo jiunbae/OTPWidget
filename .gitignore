@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+out/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Generated files
+Generated Files/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Test results
+TestResults/
+
+# Package files
+*.nupkg
+
+# Misc
+nul
+*.log

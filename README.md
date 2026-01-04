@@ -24,6 +24,37 @@ A cross-platform OTP (One-Time Password) authenticator application supporting TO
 
 ---
 
+## Project Structure
+
+```
+OTPWidget/
+├── apple/                      # Apple platforms (Native Swift)
+│   ├── project.yml            # XcodeGen configuration
+│   ├── OtpAuthenticator/      # macOS/iOS app source
+│   ├── OtpWidgetExtension/    # Widget extension
+│   └── Shared/                # Shared Swift code
+│
+├── windows/                    # Windows platform (.NET)
+│   ├── OtpAuthenticator.App/  # WinUI 3 application
+│   ├── OtpAuthenticator.Core/ # Core library
+│   ├── OtpAuthenticator.Core.Windows/  # Windows services
+│   └── OtpAuthenticator.Widget/        # Windows widget
+│
+├── docs/                       # Shared specifications
+│   ├── SPEC.md                # OTP algorithm spec
+│   ├── DATA_FORMAT.md         # Data format spec
+│   └── BACKUP_FORMAT.md       # Backup format spec
+│
+├── shared/                     # Shared resources
+│   └── (icons, localization)
+│
+├── tests/                      # Unit tests
+│
+└── OtpAuthenticator.Windows.sln  # Windows solution
+```
+
+---
+
 ## Build Instructions
 
 ### Prerequisites
@@ -36,7 +67,7 @@ A cross-platform OTP (One-Time Password) authenticator application supporting TO
   ```
 
 #### For Windows
-- **Visual Studio 2022** with the following workloads:
+- **Visual Studio 2022** with:
   - .NET Desktop Development
   - Windows App SDK (C# Templates)
 - **.NET 8.0 SDK**
@@ -46,119 +77,38 @@ A cross-platform OTP (One-Time Password) authenticator application supporting TO
 
 ### Apple (macOS / iOS)
 
-#### 1. Navigate to the Apple project directory
 ```bash
+# Navigate to Apple project
 cd apple
-```
 
-#### 2. Generate Xcode project using XcodeGen
-```bash
+# Generate Xcode project
 xcodegen generate
-```
 
-#### 3. Open in Xcode
-```bash
+# Open in Xcode
 open OtpAuthenticator.xcodeproj
 ```
 
-#### 4. Build and Run
-
-**For macOS:**
-1. Select `OtpAuthenticator-macOS` scheme
-2. Select "My Mac" as the destination
-3. Press `Cmd + R` to build and run
-
-**For iOS:**
-1. Select `OtpAuthenticator-iOS` scheme
-2. Select a simulator or connected device
-3. Press `Cmd + R` to build and run
-
-#### 5. Archive for Distribution
-```bash
-# macOS
-xcodebuild archive -scheme OtpAuthenticator-macOS -archivePath build/OtpAuthenticator-macOS.xcarchive
-
-# iOS
-xcodebuild archive -scheme OtpAuthenticator-iOS -archivePath build/OtpAuthenticator-iOS.xcarchive
-```
+**Build:**
+- macOS: Select `OtpAuthenticator-macOS` scheme → My Mac → Cmd+R
+- iOS: Select `OtpAuthenticator-iOS` scheme → Simulator → Cmd+R
 
 ---
 
 ### Windows
 
-#### 1. Open the solution
 ```bash
-# Using Visual Studio
+# Open solution in Visual Studio
 start OtpAuthenticator.Windows.sln
 
-# Or using dotnet CLI
-cd src
-```
-
-#### 2. Restore NuGet packages
-```bash
+# Or build via CLI
 dotnet restore OtpAuthenticator.Windows.sln
+dotnet build windows/OtpAuthenticator.App/OtpAuthenticator.App.csproj -p:Platform=x64
 ```
 
-#### 3. Build the project
-
-**Using Visual Studio:**
-1. Open `OtpAuthenticator.Windows.sln`
-2. Select `Debug` or `Release` configuration
-3. Press `F5` to build and run
-
-**Using CLI:**
+**Run:**
 ```bash
-# Debug build
-dotnet build src/OtpAuthenticator.App/OtpAuthenticator.App.csproj
-
-# Release build
-dotnet build src/OtpAuthenticator.App/OtpAuthenticator.App.csproj -c Release
-```
-
-#### 4. Run the application
-```bash
-dotnet run --project src/OtpAuthenticator.App/OtpAuthenticator.App.csproj
-```
-
-#### 5. Publish for Distribution
-```bash
-# Self-contained executable
-dotnet publish src/OtpAuthenticator.App/OtpAuthenticator.App.csproj -c Release -r win-x64 --self-contained
-
-# MSIX package (requires certificate)
-dotnet publish src/OtpAuthenticator.App/OtpAuthenticator.App.csproj -c Release -p:Platform=x64
-```
-
----
-
-## Project Structure
-
-```
-OTPWidget/
-├── apple/                          # Apple platforms (macOS, iOS)
-│   ├── project.yml                 # XcodeGen configuration
-│   ├── OtpAuthenticator/          # Main app source
-│   │   ├── Views/                 # SwiftUI views
-│   │   ├── OtpAuthenticatorApp.swift
-│   │   └── ContentView.swift
-│   ├── OtpWidgetExtension/        # Widget extension
-│   └── Shared/                    # Shared code (models, services)
-│       ├── OtpAccount.swift
-│       ├── OtpGenerator.swift
-│       └── AccountStore.swift
-│
-├── src/                            # Windows platform
-│   ├── OtpAuthenticator.App/      # WinUI 3 application
-│   │   ├── Views/                 # XAML views
-│   │   ├── ViewModels/            # MVVM ViewModels
-│   │   └── Converters/            # Value converters
-│   ├── OtpAuthenticator.Core/     # Core library (cross-platform)
-│   │   ├── Models/                # Data models
-│   │   └── Services/              # Business logic
-│   └── OtpAuthenticator.Core.Windows/  # Windows-specific services
-│
-└── OtpAuthenticator.Windows.sln   # Windows solution file
+# After building
+windows\OtpAuthenticator.App\bin\x64\Debug\net8.0-windows10.0.22621.0\OtpAuthenticator.exe
 ```
 
 ---
@@ -166,29 +116,34 @@ OTPWidget/
 ## Key Technologies
 
 ### Apple
-- **SwiftUI** - Declarative UI framework
-- **Vision** - QR code detection from images
+- **SwiftUI** - Declarative UI
+- **Vision** - QR code detection
 - **WidgetKit** - Home screen widgets
-- **Keychain** - Secure credential storage
-- **App Groups** - Data sharing between app and widget
+- **Keychain** - Secure storage
 
 ### Windows
-- **WinUI 3** - Modern Windows UI framework
-- **CommunityToolkit.Mvvm** - MVVM pattern implementation
-- **ZXing.NET** - QR code encoding/decoding
-- **H.NotifyIcon** - System tray support
-- **Windows PasswordVault / DPAPI** - Secure storage
+- **WinUI 3** - Modern Windows UI
+- **CommunityToolkit.Mvvm** - MVVM pattern
+- **ZXing.NET** - QR code handling
+- **H.NotifyIcon** - System tray
+
+---
+
+## Documentation
+
+- [OTP Algorithm Specification](docs/SPEC.md)
+- [Data Format Specification](docs/DATA_FORMAT.md)
+- [Backup Format Specification](docs/BACKUP_FORMAT.md)
 
 ---
 
 ## Security
 
-- Secret keys are stored in platform-native secure storage:
+- Secrets stored in platform-native secure storage:
   - **Apple**: Keychain Services
-  - **Windows**: Windows PasswordVault with DPAPI fallback
-- Account metadata is encrypted before storage
-- Backup files are encrypted with user-provided password (AES-256)
-- Clipboard is automatically cleared after configurable timeout
+  - **Windows**: Windows PasswordVault / DPAPI
+- Backup files encrypted with AES-256-GCM
+- Clipboard auto-clear after configurable timeout
 
 ---
 
@@ -200,10 +155,8 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
