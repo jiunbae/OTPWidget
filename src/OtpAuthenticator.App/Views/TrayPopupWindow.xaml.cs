@@ -1,8 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using OtpAuthenticator.App.ViewModels;
+using OtpAuthenticator.Core.Services.Interfaces;
 using Windows.Graphics;
 
 namespace OtpAuthenticator.App.Views;
@@ -20,11 +22,6 @@ public sealed partial class TrayPopupWindow : Window
         this.InitializeComponent();
 
         ViewModel = App.Services.GetRequiredService<TrayPopupViewModel>();
-
-        // 이벤트 연결
-        ExpandButton.Click += OnExpandClick;
-        ScanButton.Click += OnScanClick;
-        SettingsButton.Click += OnSettingsClick;
 
         ViewModel.CloseRequested += (s, e) => this.Close();
         ViewModel.PropertyChanged += OnViewModelPropertyChanged;
@@ -47,8 +44,8 @@ public sealed partial class TrayPopupWindow : Window
 
         if (_appWindow != null)
         {
-            // 크기 설정
-            _appWindow.Resize(new SizeInt32(340, 450));
+            // 크기 설정 (컴팩트한 팝업)
+            _appWindow.Resize(new SizeInt32(320, 380));
 
             // 창 스타일 설정
             if (_appWindow.Presenter is OverlappedPresenter presenter)
@@ -112,21 +109,6 @@ public sealed partial class TrayPopupWindow : Window
         }
     }
 
-    private void OnExpandClick(object sender, RoutedEventArgs e)
-    {
-        ViewModel.OpenMainWindowCommand.Execute(null);
-    }
-
-    private void OnScanClick(object sender, RoutedEventArgs e)
-    {
-        ViewModel.ScanQrCommand.Execute(null);
-    }
-
-    private void OnSettingsClick(object sender, RoutedEventArgs e)
-    {
-        ViewModel.OpenSettingsCommand.Execute(null);
-    }
-
     private void OnItemPointerEntered(object sender, PointerRoutedEventArgs e)
     {
         // 호버 효과
@@ -135,5 +117,19 @@ public sealed partial class TrayPopupWindow : Window
     private void OnItemPointerExited(object sender, PointerRoutedEventArgs e)
     {
         // 호버 효과 제거
+    }
+
+    private async void OnAccountItemClick(object sender, ItemClickEventArgs e)
+    {
+        if (e.ClickedItem is AccountItemViewModel account)
+        {
+            // 클립보드에 복사
+            var clipboardService = App.Services.GetRequiredService<IClipboardService>();
+            var rawCode = account.FormattedCode.Replace(" ", "");
+            await clipboardService.CopyAsync(rawCode);
+
+            // 복사 알림
+            account.ShowCopiedIndicator();
+        }
     }
 }

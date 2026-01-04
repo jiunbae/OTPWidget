@@ -1,6 +1,6 @@
-using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Dispatching;
 using OtpAuthenticator.Core.Models;
 using OtpAuthenticator.Core.Services.Interfaces;
 
@@ -12,12 +12,14 @@ namespace OtpAuthenticator.App.ViewModels;
 public partial class AccountItemViewModel : ObservableObject, IDisposable
 {
     private readonly IOtpService _otpService;
-    private readonly System.Timers.Timer _timer;
+    private readonly DispatcherQueueTimer _timer;
+    private readonly DispatcherQueue _dispatcherQueue;
     private bool _disposed;
 
     public OtpAccount Account { get; }
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FormattedCode))]
     private string _currentCode = "------";
 
     [ObservableProperty]
@@ -45,9 +47,13 @@ public partial class AccountItemViewModel : ObservableObject, IDisposable
         Account = account;
         _otpService = otpService;
 
-        // 타이머 설정 (1초마다 업데이트)
-        _timer = new System.Timers.Timer(1000);
-        _timer.Elapsed += OnTimerElapsed;
+        // UI 스레드의 DispatcherQueue 가져오기
+        _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+
+        // DispatcherQueueTimer 사용 (UI 스레드에서 실행됨)
+        _timer = _dispatcherQueue.CreateTimer();
+        _timer.Interval = TimeSpan.FromSeconds(1);
+        _timer.Tick += OnTimerTick;
 
         // 초기 코드 생성
         UpdateCode();
@@ -59,7 +65,7 @@ public partial class AccountItemViewModel : ObservableObject, IDisposable
         }
     }
 
-    private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
+    private void OnTimerTick(DispatcherQueueTimer sender, object args)
     {
         UpdateCode();
     }
@@ -104,7 +110,7 @@ public partial class AccountItemViewModel : ObservableObject, IDisposable
     /// <summary>
     /// 복사 표시 (잠깐 표시 후 숨김)
     /// </summary>
-    private async void ShowCopiedIndicator()
+    public async void ShowCopiedIndicator()
     {
         IsCopied = true;
         await Task.Delay(2000);
@@ -132,7 +138,6 @@ public partial class AccountItemViewModel : ObservableObject, IDisposable
         _disposed = true;
 
         _timer.Stop();
-        _timer.Elapsed -= OnTimerElapsed;
-        _timer.Dispose();
+        _timer.Tick -= OnTimerTick;
     }
 }

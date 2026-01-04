@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using OtpAuthenticator.App.ViewModels;
 using OtpAuthenticator.App.Views;
 using OtpAuthenticator.Core.Extensions;
@@ -40,6 +41,9 @@ public partial class App : Application
         // 메인 윈도우 생성
         MainWindow = new MainWindow();
 
+        // 저장된 테마 적용
+        SettingsViewModel.ApplyTheme(settingsService.Settings.Theme);
+
         // 시스템 트레이 초기화
         InitializeTrayIcon();
 
@@ -77,10 +81,28 @@ public partial class App : Application
 
     private void InitializeTrayIcon()
     {
-        _trayIcon = new TaskbarIcon
+        try
         {
-            ToolTipText = "OTP Authenticator"
-        };
+            _trayIcon = new TaskbarIcon
+            {
+                ToolTipText = "OTP Authenticator",
+                IconSource = new H.NotifyIcon.GeneratedIconSource
+                {
+                    Text = "OTP",
+                    Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.White),
+                    Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.DodgerBlue)
+                }
+            };
+        }
+        catch (Exception ex)
+        {
+            // 트레이 아이콘 초기화 실패 시 로그
+            var logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "OtpAuthenticator", "app.log");
+            Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
+            File.AppendAllText(logPath, $"[{DateTime.Now}] TrayIcon Error: {ex}\n");
+            return;
+        }
 
         // 좌클릭: 팝업 표시
         _trayIcon.LeftClickCommand = new RelayCommand(ShowTrayPopup);
@@ -88,8 +110,59 @@ public partial class App : Application
         // 더블클릭: 메인 창 표시
         _trayIcon.DoubleClickCommand = new RelayCommand(ShowMainWindow);
 
-        // 컨텍스트 메뉴 설정
+        // 우클릭 컨텍스트 메뉴 설정
         _trayIcon.ContextMenuMode = ContextMenuMode.SecondWindow;
+        _trayIcon.ContextFlyout = CreateContextMenu();
+
+        // 트레이 아이콘 강제 생성
+        _trayIcon.ForceCreate();
+    }
+
+    private MenuFlyout CreateContextMenu()
+    {
+        var menu = new MenuFlyout();
+
+        // 메인 창 열기
+        var openItem = new MenuFlyoutItem
+        {
+            Text = "Open OTP Authenticator",
+            Icon = new FontIcon { Glyph = "\uE8A7" }
+        };
+        openItem.Click += (s, e) => ShowMainWindow();
+        menu.Items.Add(openItem);
+
+        // 설정
+        var settingsItem = new MenuFlyoutItem
+        {
+            Text = "Settings",
+            Icon = new FontIcon { Glyph = "\uE713" }
+        };
+        settingsItem.Click += (s, e) => OpenSettings();
+        menu.Items.Add(settingsItem);
+
+        // 구분선
+        menu.Items.Add(new MenuFlyoutSeparator());
+
+        // 종료
+        var exitItem = new MenuFlyoutItem
+        {
+            Text = "Exit",
+            Icon = new FontIcon { Glyph = "\uE7E8" }
+        };
+        exitItem.Click += (s, e) => Exit();
+        menu.Items.Add(exitItem);
+
+        return menu;
+    }
+
+    private void OpenSettings()
+    {
+        ShowMainWindow();
+        // 설정 페이지로 이동
+        if (MainWindow is MainWindow mainWin)
+        {
+            mainWin.NavigateToSettings();
+        }
     }
 
     private void ShowTrayPopup()
@@ -112,7 +185,7 @@ public partial class App : Application
         MainWindow?.Hide();
     }
 
-    public void Exit()
+    public new void Exit()
     {
         _trayIcon?.Dispose();
         MainWindow?.Close();

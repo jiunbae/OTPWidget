@@ -9,36 +9,16 @@
 
     <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
           CornerRadius="8"
-          Padding="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <!-- Header -->
-        <Grid Grid.Row="0" Margin="0,0,0,12">
-            <StackPanel Orientation="Horizontal">
-                <FontIcon Glyph="&#xE8D7;" FontSize="18" Margin="0,0,8,0" />
-                <TextBlock Text="OTP Authenticator"
-                           Style="{StaticResource SubtitleTextBlockStyle}" />
-            </StackPanel>
-
-            <Button x:Name="ExpandButton"
-                    HorizontalAlignment="Right"
-                    Background="Transparent"
-                    ToolTipService.ToolTip="Open main window">
-                <FontIcon Glyph="&#xE8A7;" FontSize="14" />
-            </Button>
-        </Grid>
+          Padding="8">
 
         <!-- Account List -->
         <ListView x:Name="AccountListView"
-                  Grid.Row="1"
-                  SelectionMode="None">
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
+                  ItemClick="OnAccountItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="vm:AccountItemViewModel">
-                    <Grid Padding="8,12"
+                    <Grid Padding="8,10"
                           Background="Transparent"
                           PointerEntered="OnItemPointerEntered"
                           PointerExited="OnItemPointerExited">
@@ -50,13 +30,13 @@
 
                         <!-- Icon -->
                         <Border Grid.Column="0"
-                                Width="36"
-                                Height="36"
-                                CornerRadius="18"
+                                Width="32"
+                                Height="32"
+                                CornerRadius="16"
                                 Background="{StaticResource PrimaryBrush}"
-                                Margin="0,0,12,0">
+                                Margin="0,0,10,0">
                             <TextBlock Text="{x:Bind Initial}"
-                                       FontSize="14"
+                                       FontSize="12"
                                        FontWeight="SemiBold"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
@@ -67,9 +47,9 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind Issuer}"
                                        FontWeight="SemiBold"
-                                       FontSize="13" />
+                                       FontSize="12" />
                             <TextBlock Text="{x:Bind AccountName}"
-                                       FontSize="11"
+                                       FontSize="10"
                                        Opacity="0.6" />
                         </StackPanel>
 
@@ -79,12 +59,12 @@
                                     HorizontalAlignment="Right">
                             <TextBlock Text="{x:Bind FormattedCode, Mode=OneWay}"
                                        FontFamily="Consolas"
-                                       FontSize="20"
+                                       FontSize="18"
                                        FontWeight="SemiBold" />
                             <ProgressBar Value="{x:Bind Progress, Mode=OneWay}"
                                          Maximum="1"
-                                         Height="3"
-                                         Margin="0,4,0,0" />
+                                         Height="2"
+                                         Margin="0,3,0,0" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -93,32 +73,14 @@
 
         <!-- Empty State -->
         <StackPanel x:Name="EmptyState"
-                    Grid.Row="1"
                     Visibility="Collapsed"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <FontIcon Glyph="&#xE8D7;" FontSize="32" Opacity="0.3" />
+            <FontIcon Glyph="&#xE8D7;" FontSize="28" Opacity="0.3" />
             <TextBlock Text="No accounts"
-                       Margin="0,8,0,0"
+                       Margin="0,6,0,0"
+                       FontSize="12"
                        Opacity="0.5" />
         </StackPanel>
-
-        <!-- Footer -->
-        <Grid Grid.Row="2" Margin="0,12,0,0">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Spacing="8">
-                <Button x:Name="ScanButton" ToolTipService.ToolTip="Scan QR code">
-                    <StackPanel Orientation="Horizontal" Spacing="6">
-                        <FontIcon Glyph="&#xE8B0;" FontSize="14" />
-                        <TextBlock Text="Scan" FontSize="12" />
-                    </StackPanel>
-                </Button>
-
-                <Button x:Name="SettingsButton" ToolTipService.ToolTip="Settings">
-                    <FontIcon Glyph="&#xE713;" FontSize="14" />
-                </Button>
-            </StackPanel>
-        </Grid>
     </Grid>
 </Window>

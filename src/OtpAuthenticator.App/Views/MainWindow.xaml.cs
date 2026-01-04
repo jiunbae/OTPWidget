@@ -156,8 +156,8 @@ public sealed partial class MainWindow : Window
         appWindow.Resize(new Windows.Graphics.SizeInt32(900, 650));
         appWindow.Title = "OTP Authenticator";
 
-        // 아이콘 설정 (나중에)
-        // appWindow.SetIcon("Assets/Logo/app.ico");
+        // 닫기 버튼 클릭 시 트레이로 최소화
+        appWindow.Closing += OnWindowClosing;
     }
 
     private void OnNavigationSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -222,6 +222,11 @@ public sealed partial class MainWindow : Window
     public void Show()
     {
         this.Activate();
+    }
+
+    public void NavigateToSettings()
+    {
+        ContentFrame.Navigate(typeof(SettingsPage));
     }
 
     public void Hide()
