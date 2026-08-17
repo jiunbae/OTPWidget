@@ -31,6 +31,7 @@ jobs:
   rust:
     name: Rust (core)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: core
@@ -73,6 +74,7 @@ jobs:
   apple:
     name: Apple (Otpeek-macOS)
     runs-on: macos-arm64
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
