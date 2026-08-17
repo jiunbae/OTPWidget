@@ -45,8 +45,28 @@ jobs:
       # The CLI links keyring (Secret Service → libdbus) and arboard (clipboard → xcb).
       - name: Install Linux system deps
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
+          set -euo pipefail
+          # The runner host corrupts bytes in transit intermittently — it has shown
+          # up as `bad record mac` on curl, `tls: bad record MAC` in buildkit, and
+          # as apt `Hash Sum mismatch` on files whose size matched exactly.
+          # Re-fetching the same file afterwards succeeds, so it is transient.
+          # Nothing in a workflow fixes the host; retry around it, and drop both
+          # apt caches in between or the retry just re-reads the corrupt copy.
+          apt_try() {
+            for attempt in 1 2 3 4; do
+              if "$@"; then
+                return 0
+              fi
+              echo "apt attempt $attempt failed; clearing caches, retrying in $((attempt * 10))s" >&2
+              rm -rf /var/lib/apt/lists/*
+              apt-get clean
+              sleep $((attempt * 10))
+            done
+            echo "apt gave up after 4 attempts: $*" >&2
+            return 1
+          }
+          apt_try apt-get update
+          apt_try apt-get install -y --no-install-recommends \
             pkg-config libdbus-1-dev \
             libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
