@@ -1,0 +1,114 @@
+name: CI
+
+# GitHub Actions is retired for the Rust and Apple jobs; they run on the
+# self-hosted Gitea runners instead. Gitea mirrors this repo on every push via
+# webhook, so a run starts within seconds of the GitHub push.
+#
+# Runners:
+#   ubuntu-latest  Docker mode (jiun-mini) — catthehacker/ubuntu:act-latest.
+#   macos-arm64    Host mode (jiun-mini-macos) — the mac mini itself, so
+#                  Xcode/xcodegen/rustup are the machine's own installs and
+#                  must not be reconfigured by a job.
+#
+# The Windows job stays on GitHub Actions (.github/workflows/ci-windows.yml):
+# there is no self-hosted Windows runner.
+#
+# Mirrors are read-only, so `workflow_dispatch` is the only way to re-run.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Rust workspace (lives in core/, no root Cargo.toml).
+  # ---------------------------------------------------------------------------
+  rust:
+    name: Rust (core)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: core
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust (stable)
+        uses: dtolnay/rust-toolchain@stable
+
+      # The CLI links keyring (Secret Service → libdbus) and arboard (clipboard → xcb).
+      - name: Install Linux system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pkg-config libdbus-1-dev \
+            libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: core
+
+      - name: Test workspace
+        run: cargo test --workspace
+
+      - name: Build CLI (release)
+        run: cargo build -p otpeek-cli --release
+
+  # ---------------------------------------------------------------------------
+  # Apple app. Builds the Rust xcframework + Swift bindings, generates the
+  # Xcode project with XcodeGen, then builds the macOS scheme unsigned.
+  #
+  # This job runs in *host* mode on the mac mini, so unlike the GitHub version
+  # it deliberately does not install a toolchain or seed a cargo cache: the
+  # machine's own rustup and ~/.cargo are already warm, and rewriting them from
+  # CI would leak into the operator's environment. Only `rustup target add`
+  # runs, which is additive and idempotent.
+  # ---------------------------------------------------------------------------
+  apple:
+    name: Apple (Otpeek-macOS)
+    runs-on: macos-arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.cargo/bin:/opt/homebrew/bin:$PATH"
+          uname -smr
+          xcodebuild -version
+          rustup show
+          xcodegen --version
+
+      - name: Add Apple Rust targets
+        run: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          # build-core.sh skips any target that is not installed and only hard
+          # requires aarch64-apple-darwin, so each add is best-effort.
+          for t in aarch64-apple-darwin x86_64-apple-darwin \
+                   aarch64-apple-ios aarch64-apple-ios-sim; do
+            rustup target add "$t"
+          done
+
+      - name: Build Rust core (xcframework + Swift bindings)
+        run: |
+          export PATH="$HOME/.cargo/bin:/opt/homebrew/bin:$PATH"
+          apple/scripts/build-core.sh
+
+      - name: Generate Xcode project
+        working-directory: apple
+        run: |
+          export PATH="/opt/homebrew/bin:$PATH"
+          xcodegen generate
+
+      - name: Build macOS app (unsigned)
+        run: |
+          xcodebuild -project apple/Otpeek.xcodeproj -scheme Otpeek-macOS \
+            -configuration Debug -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            build CODE_SIGNING_ALLOWED=NO

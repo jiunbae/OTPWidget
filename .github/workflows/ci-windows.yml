@@ -1,0 +1,81 @@
+name: CI (Windows)
+
+# The Rust and Apple jobs moved to Gitea Actions (.gitea/workflows/ci.yml) to
+# get off GitHub Actions billing — the macOS job alone was charged at 10x the
+# Linux rate. Windows is the one platform with no self-hosted runner, so this
+# job stays here. It is billed at 2x.
+#
+# The Otpeek.Interop MSBuild target shells out to `cargo build -p otpeek-ffi`
+# to produce otpeek_ffi.dll, so Rust + the MSVC target must be on PATH.
+# WinUI / Windows App SDK arrives via NuGet (dotnet restore).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'core/**'
+      - 'windows/**'
+      - 'tests/**'
+      - 'Otpeek.Windows.sln'
+      - '.github/workflows/ci-windows.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'core/**'
+      - 'windows/**'
+      - 'tests/**'
+      - 'Otpeek.Windows.sln'
+      - '.github/workflows/ci-windows.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Windows (Otpeek.App)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust (stable + msvc target)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: core
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore solution
+        run: dotnet restore Otpeek.Windows.sln
+
+      - name: Build Otpeek.App (Release x64)
+        run: dotnet build windows/Otpeek.App/Otpeek.App.csproj -c Release -p:Platform=x64 --no-restore
+
+      - name: Test Windows settings core
+        run: dotnet test tests/Otpeek.Core.Tests/Otpeek.Core.Tests.csproj -c Release --no-restore
+
+      # NOTE: Otpeek.Widget is a CsWinRT component and needs the UAP platform SDK
+      # (Platforms\UAP\...\Platform.xml), which isn't present on windows-latest, so
+      # it can't be built standalone here. It compiles as part of the MSIX package
+      # build locally. The App build above still covers the shared Otpeek.Core.Windows
+      # (incl. FaviconService) that the widget depends on.
