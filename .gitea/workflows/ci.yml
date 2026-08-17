@@ -74,7 +74,7 @@ jobs:
   apple:
     name: Apple (Otpeek-macOS)
     runs-on: macos-arm64
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
